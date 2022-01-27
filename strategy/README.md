@@ -4,34 +4,39 @@ title: Strategy
 folder: strategy
 permalink: /patterns/strategy/
 categories: Behavioral
+language: en
 tags:
  - Gang of Four
 ---
 
 ## Also known as
+
 Policy
 
 ## Intent
-Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary 
-independently from clients that use it.
+
+Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets 
+the algorithm vary independently from the clients that use it.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> Slaying dragons is a dangerous profession. With experience it becomes easier. Veteran dragonslayers have developed different fighting strategies against different types of dragons.         
+> Slaying dragons is a dangerous job. With experience, it becomes easier. Veteran 
+> dragonslayers have developed different fighting strategies against different types of dragons.         
 
 In plain words
 
-> Strategy pattern allows choosing the best suited algorithm at runtime.   
+> Strategy pattern allows choosing the best-suited algorithm at runtime.   
 
 Wikipedia says
 
-> In computer programming, the strategy pattern (also known as the policy pattern) is a behavioral software design pattern that enables selecting an algorithm at runtime.
+> In computer programming, the strategy pattern (also known as the policy pattern) is a behavioral 
+> software design pattern that enables selecting an algorithm at runtime.
 
 **Programmatic Example**
 
-Let's first introduce the dragon slaying strategy interface and its implementations.
+Let's first introduce the dragon-slaying strategy interface and its implementations.
 
 ```java
 @FunctionalInterface
@@ -40,9 +45,8 @@ public interface DragonSlayingStrategy {
   void execute();
 }
 
+@Slf4j
 public class MeleeStrategy implements DragonSlayingStrategy {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(MeleeStrategy.class);
 
   @Override
   public void execute() {
@@ -50,9 +54,8 @@ public class MeleeStrategy implements DragonSlayingStrategy {
   }
 }
 
+@Slf4j
 public class ProjectileStrategy implements DragonSlayingStrategy {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(ProjectileStrategy.class);
 
   @Override
   public void execute() {
@@ -60,9 +63,8 @@ public class ProjectileStrategy implements DragonSlayingStrategy {
   }
 }
 
+@Slf4j
 public class SpellStrategy implements DragonSlayingStrategy {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SpellStrategy.class);
 
   @Override
   public void execute() {
@@ -71,7 +73,8 @@ public class SpellStrategy implements DragonSlayingStrategy {
 }
 ```
 
-And here is the mighty dragonslayer who is able to pick his fighting strategy based on the opponent.
+And here is the mighty dragonslayer, who can pick his fighting strategy based on the 
+opponent.
 
 ```java
 public class DragonSlayer {
@@ -92,7 +95,7 @@ public class DragonSlayer {
 }
 ```
 
-Finally here's dragonslayer in action.
+Finally, here's the dragonslayer in action.
 
 ```java
     LOGGER.info("Green dragon spotted ahead!");
@@ -104,25 +107,76 @@ Finally here's dragonslayer in action.
     LOGGER.info("Black dragon lands before you.");
     dragonSlayer.changeStrategy(new SpellStrategy());
     dragonSlayer.goToBattle();
-    
-    // Green dragon spotted ahead!
-    // With your Excalibur you sever the dragon's head!
-    // Red dragon emerges.
-    // You shoot the dragon with the magical crossbow and it falls dead on the ground!
-    // Black dragon lands before you.
-    // You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
 ```
 
+Program output:
+
+```
+    Green dragon spotted ahead!
+    With your Excalibur you sever the dragon's head!
+    Red dragon emerges.
+    You shoot the dragon with the magical crossbow and it falls dead on the ground!
+    Black dragon lands before you.
+    You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
+```
+
+What's more, the lambda expressions in Java 8 provides another approach for the implementation:
+
+```java
+public class LambdaStrategy {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(LambdaStrategy.class);
+
+  public enum Strategy implements DragonSlayingStrategy {
+    MeleeStrategy(() -> LOGGER.info(
+        "With your Excalibur you severe the dragon's head!")),
+    ProjectileStrategy(() -> LOGGER.info(
+        "You shoot the dragon with the magical crossbow and it falls dead on the ground!")),
+    SpellStrategy(() -> LOGGER.info(
+        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
+
+    private final DragonSlayingStrategy dragonSlayingStrategy;
+
+    Strategy(DragonSlayingStrategy dragonSlayingStrategy) {
+      this.dragonSlayingStrategy = dragonSlayingStrategy;
+    }
+
+    @Override
+    public void execute() {
+      dragonSlayingStrategy.execute();
+    }
+  }
+}
+```
+
+And here's the dragonslayer in action.
+
+```java
+    LOGGER.info("Green dragon spotted ahead!");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.MeleeStrategy);
+    dragonSlayer.goToBattle();
+    LOGGER.info("Red dragon emerges.");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.ProjectileStrategy);
+    dragonSlayer.goToBattle();
+    LOGGER.info("Black dragon lands before you.");
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.SpellStrategy);
+    dragonSlayer.goToBattle();
+```
+
+The program output is the same as the above one.
+
 ## Class diagram
-![alt text](./etc/strategy_1.png "Strategy")
+
+![alt text](./etc/strategy_urm.png "Strategy")
 
 ## Applicability
+
 Use the Strategy pattern when
 
 * Many related classes differ only in their behavior. Strategies provide a way to configure a class either one of many behaviors
 * You need different variants of an algorithm. for example, you might define algorithms reflecting different space/time trade-offs. Strategies can be used when these variants are implemented as a class hierarchy of algorithms
-* An algorithm uses data that clients shouldn't know about. Use the Strategy pattern to avoid exposing complex, algorithm-specific data structures
-* A class defines many behaviors, and these appear as multiple conditional statements in its operations. Instead of many conditionals, move related conditional branches into their own Strategy class
+* An algorithm uses data that clients shouldn't know about. Use the Strategy pattern to avoid exposing complex algorithm-specific data structures
+* A class defines many behaviors, and these appear as multiple conditional statements in its operations. Instead of many conditionals, move the related conditional branches into their own Strategy class
 
 ## Tutorial 
 

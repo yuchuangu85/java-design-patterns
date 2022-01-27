@@ -4,6 +4,7 @@ title: Facade
 folder: facade
 permalink: /patterns/facade/
 categories: Structural
+language: en
 tags:
  - Gang Of Four
  - Decoupling
@@ -16,7 +17,7 @@ interface that makes the subsystem easier to use.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > How does a goldmine work? "Well, the miners go down there and dig gold!" you say. That is what you 
 > believe because you are using a simple interface that goldmine provides on the outside, internally 
@@ -38,9 +39,8 @@ Let's take our goldmine example from above. Here we have the dwarven mine worker
 there's a base class `DwarvenMineWorker`:
 
 ```java
+@Slf4j
 public abstract class DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenMineWorker.class);
 
   public void goToSleep() {
     LOGGER.info("{} goes to sleep.", name());
@@ -99,9 +99,8 @@ Then we have the concrete dwarf classes `DwarvenTunnelDigger`, `DwarvenGoldDigge
 `DwarvenCartOperator`:
 
 ```java
+@Slf4j
 public class DwarvenTunnelDigger extends DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenTunnelDigger.class);
 
   @Override
   public void work() {
@@ -114,9 +113,8 @@ public class DwarvenTunnelDigger extends DwarvenMineWorker {
   }
 }
 
+@Slf4j
 public class DwarvenGoldDigger extends DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenGoldDigger.class);
 
   @Override
   public void work() {
@@ -129,9 +127,8 @@ public class DwarvenGoldDigger extends DwarvenMineWorker {
   }
 }
 
+@Slf4j
 public class DwarvenCartOperator extends DwarvenMineWorker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DwarvenCartOperator.class);
 
   @Override
   public void work() {

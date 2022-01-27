@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class KingsHandTest extends EventEmitterTest<KingsHand> {
+class KingsHandTest extends EventEmitterTest<KingsHand> {
 
   /**
    * Create a new test instance, using the correct object factory
@@ -53,9 +53,13 @@ public class KingsHandTest extends EventEmitterTest<KingsHand> {
    * just a mocked observer.
    */
   @Test
-  public void testPassThrough() throws Exception {
+  void testPassThrough() throws Exception {
     final var observer = mock(EventObserver.class);
-    final var kingsHand = new KingsHand(observer);
+    final var kingsHand = new KingsHand();
+    kingsHand.registerObserver(observer, Event.STARK_SIGHTED);
+    kingsHand.registerObserver(observer, Event.WARSHIPS_APPROACHING);
+    kingsHand.registerObserver(observer, Event.TRAITOR_DETECTED);
+    kingsHand.registerObserver(observer, Event.WHITE_WALKERS_SIGHTED);
 
     // The kings hand should not pass any events before he received one
     verifyZeroInteractions(observer);

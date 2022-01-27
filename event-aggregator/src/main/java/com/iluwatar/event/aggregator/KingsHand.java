@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,8 +31,8 @@ public class KingsHand extends EventEmitter implements EventObserver {
   public KingsHand() {
   }
 
-  public KingsHand(EventObserver obs) {
-    super(obs);
+  public KingsHand(EventObserver obs, Event e) {
+    super(obs, e);
   }
 
   @Override
@@ -42,6 +42,5 @@ public class KingsHand extends EventEmitter implements EventObserver {
 
   @Override
   public void timePasses(Weekday day) {
-    // NOP
   }
 }

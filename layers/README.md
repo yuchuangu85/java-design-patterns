@@ -5,6 +5,7 @@ folder: layers
 permalink: /patterns/layers/
 pumlformat: svg
 categories: Architectural
+language: en
 tags:
  - Decoupling
 ---
@@ -82,9 +83,8 @@ public interface View {
 
 }
 
+@Slf4j
 public class CakeViewImpl implements View {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(CakeViewImpl.class);
 
   private final CakeBakingService cakeBakingService;
 

@@ -4,6 +4,7 @@ title: Data Access Object
 folder: dao
 permalink: /patterns/dao/
 categories: Architectural
+language: en
 tags:
  - Data access
 ---
@@ -74,9 +75,8 @@ public class InMemoryCustomerDao implements CustomerDao {
   ...
 }
 
+@Slf4j
 public class DbCustomerDao implements CustomerDao {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DbCustomerDao.class);
 
   private final DataSource dataSource;
 

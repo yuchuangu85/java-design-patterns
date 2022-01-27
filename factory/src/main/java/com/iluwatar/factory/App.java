@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,29 +23,28 @@
 
 package com.iluwatar.factory;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Factory is an object for creating other objects, it providing Providing a static method to 
+ * Factory is an object for creating other objects. It provides a static method to 
  * create and return objects of varying classes, in order to hide the implementation logic 
- * and makes client code focus on usage rather then objects initialization and management.
- * 
- * <p>In this example the CarFactory is the factory class and it provides a static method to 
- * create different cars.
+ * and makes client code focus on usage rather than objects initialization and management.
+ *
+ * <p>In this example an alchemist manufactures coins. CoinFactory is the factory class and it
+ * provides a static method to create different types of coins.
  */
 
+@Slf4j
 public class App {
-  
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-  
+
   /**
    * Program main entry point.
    */
   public static void main(String[] args) {
-    var car1 = CarsFactory.getCar(CarType.FORD);
-    var car2 = CarsFactory.getCar(CarType.FERRARI);
-    LOGGER.info(car1.getDescription());
-    LOGGER.info(car2.getDescription());
+    LOGGER.info("The alchemist begins his work.");
+    var coin1 = CoinFactory.getCoin(CoinType.COPPER);
+    var coin2 = CoinFactory.getCoin(CoinType.GOLD);
+    LOGGER.info(coin1.getDescription());
+    LOGGER.info(coin2.getDescription());
   }
 }

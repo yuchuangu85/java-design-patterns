@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -64,6 +64,8 @@ public class ThreadPoolDispatcher implements Dispatcher {
   @Override
   public void stop() throws InterruptedException {
     executorService.shutdown();
-    executorService.awaitTermination(4, TimeUnit.SECONDS);
+    if (executorService.awaitTermination(4, TimeUnit.SECONDS)) {
+      executorService.shutdownNow();
+    }
   }
 }

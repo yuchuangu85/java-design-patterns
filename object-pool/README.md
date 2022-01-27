@@ -4,10 +4,15 @@ title: Object Pool
 folder: object-pool
 permalink: /patterns/object-pool/
 categories: Creational
+language: en
 tags:
  - Game programming
  - Performance
 ---
+
+## Also known as
+
+Resource Pool
 
 ## Intent
 

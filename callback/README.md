@@ -4,6 +4,7 @@ title: Callback
 folder: callback
 permalink: /patterns/callback/
 categories: Idiom
+language: en
 tags:
  - Reactive
 ---
@@ -54,9 +55,8 @@ public abstract class Task {
   public abstract void execute();
 }
 
+@Slf4j
 public final class SimpleTask extends Task {
-
-  private static final Logger LOGGER = getLogger(SimpleTask.class);
 
   @Override
   public void execute() {

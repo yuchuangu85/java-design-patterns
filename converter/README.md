@@ -4,6 +4,7 @@ title: Converter
 folder: converter
 permalink: /patterns/converter/
 categories: Creational
+language: en
 tags:
  - Decoupling
 ---
@@ -105,4 +106,4 @@ domain equivalence.
 
 ## Credits
 
-* [Converter](http://www.xsolve.pl/blog/converter-pattern-in-java-8/)
+* [Converter Pattern in Java 8](http://www.xsolve.pl/blog/converter-pattern-in-java-8/)

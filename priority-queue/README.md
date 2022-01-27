@@ -4,6 +4,7 @@ title: Priority Queue Pattern
 folder: priority-queue
 permalink: /patterns/priority-queue/
 categories: Behavioral
+language: en
 tags:
  - Decoupling
  - Cloud distributed
@@ -122,9 +123,8 @@ public class QueueManager {
 `Worker` constantly polls `QueueManager` for highest priority message and processes it.
 
 ```java
+@Slf4j
 public class Worker {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
 
   private final QueueManager queueManager;
 

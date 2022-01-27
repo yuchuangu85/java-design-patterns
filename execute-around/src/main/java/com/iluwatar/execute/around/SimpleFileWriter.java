@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,18 +26,24 @@ package com.iluwatar.execute.around;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * SimpleFileWriter handles opening and closing file for the user. The user only has to specify what
  * to do with the file resource through {@link FileWriterAction} parameter.
  */
+@Slf4j
 public class SimpleFileWriter {
 
   /**
    * Constructor.
    */
   public SimpleFileWriter(String filename, FileWriterAction action) throws IOException {
+    LOGGER.info("Opening the file");
     try (var writer = new FileWriter(filename)) {
+      LOGGER.info("Executing the action");
       action.writeFile(writer);
+      LOGGER.info("Closing the file");
     }
   }
 }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,7 @@
 
 package com.iluwatar.value.object;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A Value Object are objects which follow value semantics rather than reference semantics. This
@@ -40,12 +39,11 @@ import org.slf4j.LoggerFactory;
  * <p>For more specific and strict rules to implement value objects check the rules from Stephen
  * Colebourne's term VALJO : http://blog.joda.org/2014/03/valjos-value-java-objects.html
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
   /**
-   * This practice creates three HeroStats(Value object) and checks equality between those.
+   * This example creates three HeroStats (value objects) and checks equality between those.
    */
   public static void main(String[] args) {
     var statA = HeroStat.valueOf(10, 5, 0);
@@ -53,6 +51,8 @@ public class App {
     var statC = HeroStat.valueOf(5, 1, 8);
 
     LOGGER.info(statA.toString());
+    LOGGER.info(statB.toString());
+    LOGGER.info(statC.toString());
 
     LOGGER.info("Is statA and statB equal : {}", statA.equals(statB));
     LOGGER.info("Is statA and statC equal : {}", statA.equals(statC));

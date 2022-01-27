@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,24 +23,24 @@
 
 package com.iluwatar.factorykit;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Factory-kit is a creational pattern which defines a factory of immutable content with separated
+ * Factory kit is a creational pattern that defines a factory of immutable content with separated
  * builder and factory interfaces to deal with the problem of creating one of the objects specified
- * directly in the factory-kit instance.
+ * directly in the factory kit instance.
  *
- * <p>In the given example {@link WeaponFactory} represents the factory-kit, that contains four
+ * <p>In the given example {@link WeaponFactory} represents the factory kit, that contains four
  * {@link Builder}s for creating new objects of the classes implementing {@link Weapon} interface.
  *
  * <p>Each of them can be called with {@link WeaponFactory#create(WeaponType)} method, with
  * an input representing an instance of {@link WeaponType} that needs to be mapped explicitly with
  * desired class type in the factory instance.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -54,7 +54,11 @@ public class App {
       builder.add(WeaponType.SPEAR, Spear::new);
       builder.add(WeaponType.BOW, Bow::new);
     });
-    var axe = factory.create(WeaponType.AXE);
-    LOGGER.info(axe.toString());
+    var list = new ArrayList<Weapon>();
+    list.add(factory.create(WeaponType.AXE));
+    list.add(factory.create(WeaponType.SPEAR));
+    list.add(factory.create(WeaponType.SWORD));
+    list.add(factory.create(WeaponType.BOW));
+    list.stream().forEach(weapon -> LOGGER.info("{}", weapon.toString()));
   }
 }

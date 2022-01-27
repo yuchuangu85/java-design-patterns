@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,24 +23,22 @@
 
 package com.iluwatar.multiton;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Whereas Singleton design pattern introduces single globally accessible object the Multiton
+ * Whereas Singleton design pattern introduces single globally accessible object, the Multiton
  * pattern defines many globally accessible objects. The client asks for the correct instance from
- * the Multiton by passing an enumeration as parameter.
+ * the Multiton by passing an enumeration as a parameter.
  *
  * <p>There is more than one way to implement the multiton design pattern. In the first example
  * {@link Nazgul} is the Multiton and we can ask single {@link Nazgul} from it using {@link
- * NazgulName}. The {@link Nazgul}s are statically initialized and stored in concurrent hash map.
+ * NazgulName}. The {@link Nazgul}s are statically initialized and stored in a concurrent hash map.
  *
  * <p>In the enum implementation {@link NazgulEnum} is the multiton. It is static and mutable
  * because of the way java supports enums.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -49,6 +47,7 @@ public class App {
    */
   public static void main(String[] args) {
     // eagerly initialized multiton
+    LOGGER.info("Printing out eagerly initialized multiton contents");
     LOGGER.info("KHAMUL={}", Nazgul.getInstance(NazgulName.KHAMUL));
     LOGGER.info("MURAZOR={}", Nazgul.getInstance(NazgulName.MURAZOR));
     LOGGER.info("DWAR={}", Nazgul.getInstance(NazgulName.DWAR));
@@ -60,6 +59,7 @@ public class App {
     LOGGER.info("UVATHA={}", Nazgul.getInstance(NazgulName.UVATHA));
 
     // enum multiton
+    LOGGER.info("Printing out enum-based multiton contents");
     LOGGER.info("KHAMUL={}", NazgulEnum.KHAMUL);
     LOGGER.info("MURAZOR={}", NazgulEnum.MURAZOR);
     LOGGER.info("DWAR={}", NazgulEnum.DWAR);
