@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.spatialpartition;
 
 import java.util.Collection;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The quadtree data structure is being used to keep track of the objects' locations. It has the
@@ -36,7 +38,7 @@ public class QuadTree {
   Rect boundary;
   int capacity;
   boolean divided;
-  Hashtable<Integer, Point> points;
+  Map<Integer, Point> points;
   QuadTree northwest;
   QuadTree northeast;
   QuadTree southwest;
@@ -46,7 +48,7 @@ public class QuadTree {
     this.boundary = boundary;
     this.capacity = capacity;
     this.divided = false;
-    this.points = new Hashtable<>();
+    this.points = new HashMap<>();
     this.northwest = null;
     this.northeast = null;
     this.southwest = null;

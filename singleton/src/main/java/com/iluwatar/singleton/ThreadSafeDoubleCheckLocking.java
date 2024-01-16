@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.singleton;
 
 /**
@@ -33,7 +34,9 @@ package com.iluwatar.singleton;
  * @author mortezaadi@gmail.com
  */
 public final class ThreadSafeDoubleCheckLocking {
-
+  /**
+   * Singleton instance of the class, declared as volatile to ensure atomic access by multiple threads.
+   */
   private static volatile ThreadSafeDoubleCheckLocking instance;
 
   /**
@@ -72,7 +75,8 @@ public final class ThreadSafeDoubleCheckLocking {
           // The instance is still not initialized so we can safely
           // (no other thread can enter this zone)
           // create an instance and make it our singleton instance.
-          instance = result = new ThreadSafeDoubleCheckLocking();
+          result = new ThreadSafeDoubleCheckLocking();
+          instance = result;
         }
       }
     }

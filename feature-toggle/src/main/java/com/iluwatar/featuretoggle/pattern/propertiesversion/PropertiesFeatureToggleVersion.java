@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.featuretoggle.pattern.propertiesversion;
 
 import com.iluwatar.featuretoggle.pattern.Service;
@@ -29,7 +30,7 @@ import java.util.Properties;
 import lombok.Getter;
 
 /**
- * This example of the Feature Toogle pattern is less dynamic version than {@link
+ * This example of the Feature Toggle pattern is less dynamic version than {@link
  * com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion} where the feature is
  * turned on or off at the time of creation of the service. This example uses simple Java {@link
  * Properties} however it could as easily be done with an external configuration file loaded by

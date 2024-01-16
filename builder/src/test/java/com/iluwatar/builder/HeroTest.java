@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.builder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -68,12 +69,12 @@ class HeroTest {
 
     assertNotNull(hero);
     assertNotNull(hero.toString());
-    assertEquals(Profession.WARRIOR, hero.getProfession());
-    assertEquals(heroName, hero.getName());
-    assertEquals(Armor.CHAIN_MAIL, hero.getArmor());
-    assertEquals(Weapon.SWORD, hero.getWeapon());
-    assertEquals(HairType.LONG_CURLY, hero.getHairType());
-    assertEquals(HairColor.BLOND, hero.getHairColor());
+    assertEquals(Profession.WARRIOR, hero.profession());
+    assertEquals(heroName, hero.name());
+    assertEquals(Armor.CHAIN_MAIL, hero.armor());
+    assertEquals(Weapon.SWORD, hero.weapon());
+    assertEquals(HairType.LONG_CURLY, hero.hairType());
+    assertEquals(HairColor.BLOND, hero.hairColor());
 
   }
 

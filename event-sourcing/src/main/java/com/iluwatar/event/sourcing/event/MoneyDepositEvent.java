@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,9 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.event.sourcing.event;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -30,7 +33,7 @@ import lombok.Getter;
 
 /**
  * This is the class that implements money deposit event. Holds the necessary info for a money
- * deposit event. Implements the process function that finds the event related domain objects and
+ * deposit event. Implements the process function that finds the event-related domain objects and
  * calls the related domain object's handle event functions
  *
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
@@ -49,7 +52,10 @@ public class MoneyDepositEvent extends DomainEvent {
    * @param accountNo   the account no
    * @param money       the money
    */
-  public MoneyDepositEvent(long sequenceId, long createdTime, int accountNo, BigDecimal money) {
+  @JsonCreator
+  public MoneyDepositEvent(@JsonProperty("sequenceId") long sequenceId,
+      @JsonProperty("createdTime") long createdTime,
+      @JsonProperty("accountNo") int accountNo, @JsonProperty("money") BigDecimal money) {
     super(sequenceId, createdTime, "MoneyDepositEvent");
     this.money = money;
     this.accountNo = accountNo;

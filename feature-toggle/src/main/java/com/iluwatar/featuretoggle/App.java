@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.featuretoggle;
 
 import com.iluwatar.featuretoggle.pattern.Service;
@@ -38,8 +39,8 @@ import lombok.extern.slf4j.Slf4j;
  * version of the feature toggle, where the enhanced version of the welcome message which is
  * personalised is turned either on or off at instance creation. This method is not as dynamic as
  * the {@link User} driven version where the feature of the personalised welcome message is
- * dependant on the {@link UserGroup} the {@link User} is in. So if the user is a memeber of the
- * {@link UserGroup#isPaid(User)} then they get an ehanced version of the welcome message.
+ * dependent on the {@link UserGroup} the {@link User} is in. So if the user is a member of the
+ * {@link UserGroup#isPaid(User)} then they get an enhanced version of the welcome message.
  *
  * <p>Note that this pattern can easily introduce code complexity, and if not kept in check can
  * result in redundant unmaintained code within the codebase.

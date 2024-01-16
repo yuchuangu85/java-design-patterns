@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.spatialpartition;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class extends the generic SpatialPartition abstract class and is used in our example to keep
@@ -33,10 +34,10 @@ import java.util.HashMap;
 
 public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
 
-  private final HashMap<Integer, Bubble> bubbles;
+  private final Map<Integer, Bubble> bubbles;
   private final QuadTree bubblesQuadTree;
 
-  SpatialPartitionBubbles(HashMap<Integer, Bubble> bubbles, QuadTree bubblesQuadTree) {
+  SpatialPartitionBubbles(Map<Integer, Bubble> bubbles, QuadTree bubblesQuadTree) {
     this.bubbles = bubbles;
     this.bubblesQuadTree = bubblesQuadTree;
   }

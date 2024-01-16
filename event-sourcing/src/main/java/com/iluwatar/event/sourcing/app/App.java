@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,20 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.event.sourcing.app;
 
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
 import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
 import com.iluwatar.event.sourcing.processor.DomainEventProcessor;
+import com.iluwatar.event.sourcing.processor.JsonFileJournal;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 import java.math.BigDecimal;
 import java.util.Date;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Event Sourcing : Instead of storing just the current state of the data in a domain, use an
+ * Event Sourcing: Instead of storing just the current state of the data in a domain, use an
  * append-only store to record the full series of actions taken on that data. The store acts as the
  * system of record and can be used to materialize the domain objects. This can simplify tasks in
  * complex domains, by avoiding the need to synchronize the data model and the business domain,
@@ -41,16 +43,18 @@ import lombok.extern.slf4j.Slf4j;
  * transactional data, and maintain full audit trails and history that can enable compensating
  * actions.
  *
- * <p>This App class is an example usage of Event Sourcing pattern. As an example, two bank account
- * is created, then some money deposit and transfer actions are taken so a new state of accounts is
- * created. At that point, state is cleared in order to represent a system shot down. After the shot
- * down, system state is recovered by re-creating the past events from event journal. Then state is
- * printed so a user can view the last state is same with the state before system shot down.
+ * <p>This App class is an example usage of an Event Sourcing pattern. As an example, two bank
+ * accounts are created, then some money deposit and transfer actions are taken, so a new state of
+ * accounts is created. At that point, state is cleared in order to represent a system shut-down.
+ * After the shut-down, system state is recovered by re-creating the past events from event
+ * journals. Then state is printed so a user can view the last state is same with the state before a
+ * system shut-down.
  *
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
 @Slf4j
 public class App {
+
   /**
    * The constant ACCOUNT OF DAENERYS.
    */
@@ -67,8 +71,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    var eventProcessor = new DomainEventProcessor();
-
+    var eventProcessor = new DomainEventProcessor(new JsonFileJournal());
 
     LOGGER.info("Running the system first time............");
     eventProcessor.reset();
@@ -102,7 +105,7 @@ public class App {
 
     LOGGER.info("Recover the system by the events in journal file............");
 
-    eventProcessor = new DomainEventProcessor();
+    eventProcessor = new DomainEventProcessor(new JsonFileJournal());
     eventProcessor.recover();
 
     LOGGER.info("...............Recovered State:............");

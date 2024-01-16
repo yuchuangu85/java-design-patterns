@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.pageobject;
 
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -60,7 +61,7 @@ public class AlbumPage extends Page {
     try {
       page = this.webClient.getPage(PAGE_URL);
     } catch (IOException e) {
-      LOGGER.error("An error occured on navigateToPage.", e);
+      LOGGER.error("An error occurred on navigateToPage.", e);
     }
     return this;
   }
@@ -150,7 +151,7 @@ public class AlbumPage extends Page {
     try {
       cancelButton.click();
     } catch (IOException e) {
-      LOGGER.error("An error occured on cancelChanges.", e);
+      LOGGER.error("An error occurred on cancelChanges.", e);
     }
     return new AlbumListPage(webClient);
   }
@@ -166,7 +167,7 @@ public class AlbumPage extends Page {
     try {
       saveButton.click();
     } catch (IOException e) {
-      LOGGER.error("An error occured on saveChanges.", e);
+      LOGGER.error("An error occurred on saveChanges.", e);
     }
     return this;
   }

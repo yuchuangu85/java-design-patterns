@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.commander;
 
 import com.iluwatar.commander.Order.MessageSent;
@@ -476,8 +477,8 @@ public class Commander {
         && System.currentTimeMillis() - o.createdTime < messageTime) {
       var qt = new QueueTask(order, TaskType.MESSAGING, 1);
       updateQueue(qt);
-      LOG.warn("Order " + order.id + ": Error in sending Payment Error message, "
-              + "trying to queue task and add to employee handle..");
+      LOG.warn("Order {}: Error in sending Payment Error message, trying to queue task and add to employee handle..",
+              order.id);
       employeeHandleIssue(o);
     }
   }

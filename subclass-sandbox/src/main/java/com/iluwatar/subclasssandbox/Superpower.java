@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.subclasssandbox;
 
 import org.slf4j.Logger;
@@ -46,16 +47,16 @@ public abstract class Superpower {
    * @param z Z coordinate.
    */
   protected void move(double x, double y, double z) {
-    logger.info("Move to ( " + x + ", " + y + ", " + z + " )");
+    logger.info("Move to ( {}, {}, {} )", x, y, z);
   }
 
   /**
    * Play sound effect for the superpower.
    * @param soundName Sound name.
-   * @param volumn Value of volumn.
+   * @param volume Value of volume.
    */
-  protected void playSound(String soundName, int volumn) {
-    logger.info("Play " + soundName + " with volumn " + volumn);
+  protected void playSound(String soundName, int volume) {
+    logger.info("Play {} with volume {}", soundName, volume);
   }
 
   /**
@@ -64,6 +65,6 @@ public abstract class Superpower {
    * @param count Count of particles to be spawned.
    */
   protected void spawnParticles(String particleType, int count) {
-    logger.info("Spawn " + count + " particle with type " + particleType);
+    logger.info("Spawn {} particle with type {}", count, particleType);
   }
 }

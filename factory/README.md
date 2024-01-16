@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Factory
-folder: factory
-permalink: /patterns/factory/
-categories: Creational
+category: Creational
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 
@@ -63,7 +60,7 @@ public class CopperCoin implements Coin {
 }
 ```
 
-Enumeration above represents types of coins that we support (`GoldCoin` and `CopperCoin`).
+Enumeration below represents types of coins that we support (`GoldCoin` and `CopperCoin`).
 
 ```java
 @RequiredArgsConstructor
@@ -113,7 +110,7 @@ This is a gold coin.
 
 ## Applicability
 
-Use the factory pattern when you only care about the creation of a object, not how to create 
+Use the factory pattern when you only care about the creation of an object, not how to create 
 and manage it.
 
 Pros

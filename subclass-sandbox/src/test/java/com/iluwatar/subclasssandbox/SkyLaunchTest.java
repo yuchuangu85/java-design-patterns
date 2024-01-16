@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.subclasssandbox;
 
 import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOutNormalized;
@@ -46,7 +47,7 @@ class SkyLaunchTest {
   void testPlaySound() throws Exception {
     var skyLaunch = new SkyLaunch();
     var outputLog = getLogContent(() -> skyLaunch.playSound("SOUND_NAME", 1));
-    var expectedLog = "Play SOUND_NAME with volumn 1";
+    var expectedLog = "Play SOUND_NAME with volume 1";
     assertEquals(outputLog, expectedLog);
   }
 
@@ -68,7 +69,7 @@ class SkyLaunchTest {
     final var log1 = getLogContent(logs[0]);
     final var expectedLog1 = "Move to ( 0.0, 0.0, 20.0 )";
     final var log2 = getLogContent(logs[1]);
-    final var expectedLog2 = "Play SKYLAUNCH_SOUND with volumn 1";
+    final var expectedLog2 = "Play SKYLAUNCH_SOUND with volume 1";
     final var log3 = getLogContent(logs[2]);
     final var expectedLog3 = "Spawn 100 particle with type SKYLAUNCH_PARTICLE";
     assertEquals(logs.length, expectedSize);

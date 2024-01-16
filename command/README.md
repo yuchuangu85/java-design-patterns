@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Command
-folder: command
-permalink: /patterns/command/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 
@@ -43,8 +40,8 @@ Here's the sample code with wizard and goblin. Let's start from the `Wizard` cla
 @Slf4j
 public class Wizard {
 
-  private final Deque<Command> undoStack = new LinkedList<>();
-  private final Deque<Command> redoStack = new LinkedList<>();
+  private final Deque<Runnable> undoStack = new LinkedList<>();
+  private final Deque<Runnable> redoStack = new LinkedList<>();
 
   public Wizard() {}
 

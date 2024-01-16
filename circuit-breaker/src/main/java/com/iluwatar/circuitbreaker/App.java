@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.circuitbreaker;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * <p>
  * The intention of the Circuit Builder pattern is to handle remote failures robustly, which is to
- * mean that if a service is dependant on n number of other services, and m of them fail, we should
+ * mean that if a service is dependent on n number of other services, and m of them fail, we should
  * be able to recover from that failure by ensuring that the user can still use the services that
  * are actually functional, and resources are not tied up by uselessly by the services which are not
  * working. However, we should also be able to detect when any of the m failing services become

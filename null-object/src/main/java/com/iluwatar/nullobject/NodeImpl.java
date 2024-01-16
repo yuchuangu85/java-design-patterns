@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.nullobject;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,27 +29,9 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Implementation for binary tree's normal nodes.
  */
+
 @Slf4j
-public class NodeImpl implements Node {
-
-  private final String name;
-  private final Node left;
-  private final Node right;
-
-  /**
-   * Constructor.
-   */
-  public NodeImpl(String name, Node left, Node right) {
-    this.name = name;
-    this.left = left;
-    this.right = right;
-  }
-
-  @Override
-  public int getTreeSize() {
-    return 1 + left.getTreeSize() + right.getTreeSize();
-  }
-
+public record NodeImpl(String name, Node left, Node right) implements Node {
   @Override
   public Node getLeft() {
     return left;
@@ -63,7 +46,10 @@ public class NodeImpl implements Node {
   public String getName() {
     return name;
   }
-
+  @Override
+  public int getTreeSize() {
+    return 1 + left.getTreeSize() + right.getTreeSize();
+  }
   @Override
   public void walk() {
     LOGGER.info(name);

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.registry;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -30,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class CustomerRegistryTest {
+class CustomerRegistryTest {
 
   private static CustomerRegistry customerRegistry;
 
@@ -40,7 +41,7 @@ public class CustomerRegistryTest {
   }
 
   @Test
-  public void shouldBeAbleToAddAndQueryCustomerObjectFromRegistry() {
+  void shouldBeAbleToAddAndQueryCustomerObjectFromRegistry() {
     Customer john = new Customer("1", "john");
     Customer julia = new Customer("2", "julia");
 
@@ -49,13 +50,13 @@ public class CustomerRegistryTest {
 
     Customer customerWithId1 = customerRegistry.getCustomer("1");
     assertNotNull(customerWithId1);
-    assertEquals("1", customerWithId1.getId());
-    assertEquals("john", customerWithId1.getName());
+    assertEquals("1", customerWithId1.id());
+    assertEquals("john", customerWithId1.name());
 
     Customer customerWithId2 = customerRegistry.getCustomer("2");
     assertNotNull(customerWithId2);
-    assertEquals("2", customerWithId2.getId());
-    assertEquals("julia", customerWithId2.getName());
+    assertEquals("2", customerWithId2.id());
+    assertEquals("julia", customerWithId2.name());
   }
 
   @Test
