@@ -24,11 +24,7 @@
  */
 package com.iluwatar.intercepting.filter;
 
-/**
- * Filter Manager manages the filters and {@link FilterChain}.
- *
- * @author joshzambales
- */
+/** Filter Manager manages the filters and {@link FilterChain}. */
 public class FilterManager {
 
   private final FilterChain filterChain;

@@ -36,7 +36,6 @@ import java.util.function.Predicate;
  * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
  *
  * @param <T> the remote op's return type
- * @author George Aristy (george.aristy@gmail.com)
  */
 public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   private static final Random RANDOM = new Random();
@@ -50,18 +49,17 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   /**
    * Ctor.
    *
-   * @param op          the {@link BusinessOperation} to retry
+   * @param op the {@link BusinessOperation} to retry
    * @param maxAttempts number of times to retry
    * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
-   *                    will be ignored if no tests are given
+   *     will be ignored if no tests are given
    */
   @SafeVarargs
   public RetryExponentialBackoff(
       BusinessOperation<T> op,
       int maxAttempts,
       long maxDelay,
-      Predicate<Exception>... ignoreTests
-  ) {
+      Predicate<Exception>... ignoreTests) {
     this.op = op;
     this.maxAttempts = maxAttempts;
     this.maxDelay = maxDelay;
@@ -105,10 +103,9 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
           var delay = Math.min(testDelay, this.maxDelay);
           Thread.sleep(delay);
         } catch (InterruptedException f) {
-          //ignore
+          // ignore
         }
       }
     } while (true);
   }
 }
-

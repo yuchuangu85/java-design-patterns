@@ -33,16 +33,10 @@ import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Size;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/29/15 - 7:43 PM
- *
- * @author Jeroen Meulemeester
- */
+/** SizeSelectorTest */
 class SizeSelectorTest {
 
-  /**
-   * Verify if the size selector gives the correct results
-   */
+  /** Verify if the size selector gives the correct results */
   @Test
   void testMovement() {
     final var normalCreature = mock(Creature.class);
@@ -55,5 +49,4 @@ class SizeSelectorTest {
     assertTrue(normalSelector.test(normalCreature));
     assertFalse(normalSelector.test(smallCreature));
   }
-
 }

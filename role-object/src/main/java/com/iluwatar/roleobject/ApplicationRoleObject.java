@@ -24,8 +24,8 @@
  */
 package com.iluwatar.roleobject;
 
-import static com.iluwatar.roleobject.Role.Borrower;
-import static com.iluwatar.roleobject.Role.Investor;
+import static com.iluwatar.roleobject.Role.BORROWER;
+import static com.iluwatar.roleobject.Role.INVESTOR;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,22 +39,22 @@ import lombok.extern.slf4j.Slf4j;
  * customer-specific roles is provided by {@link CustomerRole}, which also supports the {@link
  * Customer} interface.
  *
- * <p>The {@link CustomerRole} class is abstract and not meant to be instantiated.
- * Concrete subclasses of {@link CustomerRole}, for example {@link BorrowerRole} or {@link
- * InvestorRole}, define and implement the interface for specific roles. It is only these subclasses
- * which are instantiated at runtime. The {@link BorrowerRole}  class defines the context-specific
- * view of {@link Customer} objects as needed by the loan department. It defines additional
- * operations to manage the customer’s credits and securities. Similarly, the {@link InvestorRole}
- * class adds operations specific to the investment department’s view of customers. A client like
- * the loan application may either work with objects of the {@link CustomerRole} class, using the
- * interface class {@link Customer}, or with objects of concrete {@link CustomerRole} subclasses.
- * Suppose the loan application knows a particular {@link Customer} instance through its {@link
- * Customer} interface. The loan application may want to check whether the {@link Customer} object
- * plays the role of Borrower. To this end it calls {@link Customer#hasRole(Role)} with a suitable
- * role specification. For the purpose of our example, let’s assume we can name roles with enum. If
- * the {@link Customer} object can play the role named “Borrower,” the loan application will ask it
- * to return a reference to the corresponding object. The loan application may now use this
- * reference to call Borrower-specific operations.
+ * <p>The {@link CustomerRole} class is abstract and not meant to be instantiated. Concrete
+ * subclasses of {@link CustomerRole}, for example {@link BorrowerRole} or {@link InvestorRole},
+ * define and implement the interface for specific roles. It is only these subclasses which are
+ * instantiated at runtime. The {@link BorrowerRole} class defines the context-specific view of
+ * {@link Customer} objects as needed by the loan department. It defines additional operations to
+ * manage the customer’s credits and securities. Similarly, the {@link InvestorRole} class adds
+ * operations specific to the investment department’s view of customers. A client like the loan
+ * application may either work with objects of the {@link CustomerRole} class, using the interface
+ * class {@link Customer}, or with objects of concrete {@link CustomerRole} subclasses. Suppose the
+ * loan application knows a particular {@link Customer} instance through its {@link Customer}
+ * interface. The loan application may want to check whether the {@link Customer} object plays the
+ * role of Borrower. To this end it calls {@link Customer#hasRole(Role)} with a suitable role
+ * specification. For the purpose of our example, let’s assume we can name roles with enum. If the
+ * {@link Customer} object can play the role named “Borrower,” the loan application will ask it to
+ * return a reference to the corresponding object. The loan application may now use this reference
+ * to call Borrower-specific operations.
  */
 @Slf4j
 public class ApplicationRoleObject {
@@ -65,28 +65,31 @@ public class ApplicationRoleObject {
    * @param args program arguments
    */
   public static void main(String[] args) {
-    var customer = Customer.newCustomer(Borrower, Investor);
+    var customer = Customer.newCustomer(BORROWER, INVESTOR);
 
-    LOGGER.info(" the new customer created : {}", customer);
+    LOGGER.info("New customer created : {}", customer);
 
-    var hasBorrowerRole = customer.hasRole(Borrower);
-    LOGGER.info(" customer has a borrowed role - {}", hasBorrowerRole);
-    var hasInvestorRole = customer.hasRole(Investor);
-    LOGGER.info(" customer has an investor role - {}", hasInvestorRole);
+    var hasBorrowerRole = customer.hasRole(BORROWER);
+    LOGGER.info("Customer has a borrower role - {}", hasBorrowerRole);
+    var hasInvestorRole = customer.hasRole(INVESTOR);
+    LOGGER.info("Customer has an investor role - {}", hasInvestorRole);
 
-    customer.getRole(Investor, InvestorRole.class)
-        .ifPresent(inv -> {
-          inv.setAmountToInvest(1000);
-          inv.setName("Billy");
-        });
-    customer.getRole(Borrower, BorrowerRole.class)
-        .ifPresent(inv -> inv.setName("Johny"));
+    customer
+        .getRole(INVESTOR, InvestorRole.class)
+        .ifPresent(
+            inv -> {
+              inv.setAmountToInvest(1000);
+              inv.setName("Billy");
+            });
+    customer.getRole(BORROWER, BorrowerRole.class).ifPresent(inv -> inv.setName("Johny"));
 
-    customer.getRole(Investor, InvestorRole.class)
+    customer
+        .getRole(INVESTOR, InvestorRole.class)
         .map(InvestorRole::invest)
         .ifPresent(LOGGER::info);
 
-    customer.getRole(Borrower, BorrowerRole.class)
+    customer
+        .getRole(BORROWER, BorrowerRole.class)
         .map(BorrowerRole::borrow)
         .ifPresent(LOGGER::info);
   }

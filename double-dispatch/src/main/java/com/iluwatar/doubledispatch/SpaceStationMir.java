@@ -27,9 +27,7 @@ package com.iluwatar.doubledispatch;
 import com.iluwatar.doubledispatch.constants.AppConstants;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Space station Mir game object.
- */
+/** Space station Mir game object. */
 @Slf4j
 public class SpaceStationMir extends GameObject {
 
@@ -44,32 +42,40 @@ public class SpaceStationMir extends GameObject {
 
   @Override
   public void collisionResolve(FlamingAsteroid asteroid) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged! {} is set on fire!", asteroid.getClass()
-            .getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName(), this.getClass()
-            .getSimpleName());
+    LOGGER.info(
+        AppConstants.HITS + " {} is damaged! {} is set on fire!",
+        asteroid.getClass().getSimpleName(),
+        this.getClass().getSimpleName(),
+        this.getClass().getSimpleName(),
+        this.getClass().getSimpleName());
     setDamaged(true);
     setOnFire(true);
   }
 
   @Override
   public void collisionResolve(Meteoroid meteoroid) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged!", meteoroid.getClass().getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName());
+    logHits(meteoroid);
     setDamaged(true);
   }
 
   @Override
   public void collisionResolve(SpaceStationMir mir) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged!", mir.getClass().getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName());
+    logHits(mir);
     setDamaged(true);
   }
 
   @Override
   public void collisionResolve(SpaceStationIss iss) {
-    LOGGER.info(AppConstants.HITS, " {} is damaged!", iss.getClass().getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName());
+    logHits(iss);
     setDamaged(true);
+  }
+
+  private void logHits(GameObject gameObject) {
+    LOGGER.info(
+        AppConstants.HITS,
+        " {} is damaged!",
+        gameObject.getClass().getSimpleName(),
+        this.getClass().getSimpleName(),
+        this.getClass().getSimpleName());
   }
 }

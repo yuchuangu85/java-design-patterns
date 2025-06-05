@@ -34,11 +34,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/10/15 - 8:57 PM
- *
- * @author Jeroen Meulemeester
- */
+/** GuiceWizardTest */
 class GuiceWizardTest {
 
   private InMemoryAppender appender;
@@ -58,21 +54,19 @@ class GuiceWizardTest {
    * through the constructor parameter
    */
   @Test
-  void testSmokeEveryThingThroughConstructor() throws Exception {
+  void testSmokeEveryThingThroughConstructor() {
 
-    List<Tobacco> tobaccos = List.of(
-        new OldTobyTobacco(),
-        new RivendellTobacco(),
-        new SecondBreakfastTobacco()
-    );
+    List<Tobacco> tobaccos =
+        List.of(new OldTobyTobacco(), new RivendellTobacco(), new SecondBreakfastTobacco());
 
     // Verify if the wizard is smoking the correct tobacco ...
-    tobaccos.forEach(tobacco -> {
-      final GuiceWizard guiceWizard = new GuiceWizard(tobacco);
-      guiceWizard.smoke();
-      String lastMessage = appender.getLastMessage();
-      assertEquals("GuiceWizard smoking " + tobacco.getClass().getSimpleName(), lastMessage);
-    });
+    tobaccos.forEach(
+        tobacco -> {
+          final GuiceWizard guiceWizard = new GuiceWizard(tobacco);
+          guiceWizard.smoke();
+          String lastMessage = appender.getLastMessage();
+          assertEquals("GuiceWizard smoking " + tobacco.getClass().getSimpleName(), lastMessage);
+        });
 
     // ... and nothing else is happening.
     assertEquals(tobaccos.size(), appender.getLogSize());
@@ -83,32 +77,31 @@ class GuiceWizardTest {
    * through the Guice google inject framework
    */
   @Test
-  void testSmokeEveryThingThroughInjectionFramework() throws Exception {
+  void testSmokeEveryThingThroughInjectionFramework() {
 
-    List<Class<? extends Tobacco>> tobaccos = List.of(
-        OldTobyTobacco.class,
-        RivendellTobacco.class,
-        SecondBreakfastTobacco.class
-    );
+    List<Class<? extends Tobacco>> tobaccos =
+        List.of(OldTobyTobacco.class, RivendellTobacco.class, SecondBreakfastTobacco.class);
 
     // Configure the tobacco in the injection framework ...
     // ... and create a new wizard with it
     // Verify if the wizard is smoking the correct tobacco ...
-    tobaccos.forEach(tobaccoClass -> {
-      final var injector = Guice.createInjector(new AbstractModule() {
-        @Override
-        protected void configure() {
-          bind(Tobacco.class).to(tobaccoClass);
-        }
-      });
-      final var guiceWizard = injector.getInstance(GuiceWizard.class);
-      guiceWizard.smoke();
-      String lastMessage = appender.getLastMessage();
-      assertEquals("GuiceWizard smoking " + tobaccoClass.getSimpleName(), lastMessage);
-    });
+    tobaccos.forEach(
+        tobaccoClass -> {
+          final var injector =
+              Guice.createInjector(
+                  new AbstractModule() {
+                    @Override
+                    protected void configure() {
+                      bind(Tobacco.class).to(tobaccoClass);
+                    }
+                  });
+          final var guiceWizard = injector.getInstance(GuiceWizard.class);
+          guiceWizard.smoke();
+          String lastMessage = appender.getLastMessage();
+          assertEquals("GuiceWizard smoking " + tobaccoClass.getSimpleName(), lastMessage);
+        });
 
     // ... and nothing else is happening.
     assertEquals(tobaccos.size(), appender.getLogSize());
   }
-
 }

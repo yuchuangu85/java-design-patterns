@@ -34,11 +34,7 @@ import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.store.ContentStore;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/12/15 - 10:31 PM
- *
- * @author Jeroen Meulemeester
- */
+/** ContentViewTest */
 class ContentViewTest {
 
   @Test
@@ -52,5 +48,4 @@ class ContentViewTest {
     verify(store, times(1)).getContent();
     verifyNoMoreInteractions(store);
   }
-
 }

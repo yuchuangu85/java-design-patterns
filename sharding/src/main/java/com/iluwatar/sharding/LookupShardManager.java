@@ -27,13 +27,11 @@ package com.iluwatar.sharding;
 import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * ShardManager with lookup strategy. In this strategy the sharding logic implements
- * a map that routes a request for data to the shard that contains that data by using
- * the shard key.
+ * ShardManager with lookup strategy. In this strategy the sharding logic implements a map that
+ * routes a request for data to the shard that contains that data by using the shard key.
  */
 @Slf4j
 public class LookupShardManager extends ShardManager {
@@ -46,7 +44,7 @@ public class LookupShardManager extends ShardManager {
     lookupMap.put(data.getKey(), shardId);
     var shard = shardMap.get(shardId);
     shard.storeData(data);
-    LOGGER.info(data.toString() + " is stored in Shard " + shardId);
+    LOGGER.info(data + " is stored in Shard " + shardId);
     return shardId;
   }
 
@@ -60,5 +58,4 @@ public class LookupShardManager extends ShardManager {
       return new SecureRandom().nextInt(shardCount - 1) + 1;
     }
   }
-
 }

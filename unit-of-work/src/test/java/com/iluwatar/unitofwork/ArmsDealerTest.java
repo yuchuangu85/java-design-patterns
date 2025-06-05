@@ -36,17 +36,14 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-/**
- * tests {@link ArmsDealer}
- */
-
+/** tests {@link ArmsDealer} */
 class ArmsDealerTest {
   private final Weapon weapon1 = new Weapon(1, "battle ram");
   private final Weapon weapon2 = new Weapon(1, "wooden lance");
 
   private final Map<String, List<Weapon>> context = new HashMap<>();
   private final WeaponDatabase weaponDatabase = mock(WeaponDatabase.class);
-  private final ArmsDealer armsDealer = new ArmsDealer(context, weaponDatabase);;
+  private final ArmsDealer armsDealer = new ArmsDealer(context, weaponDatabase);
 
   @Test
   void shouldSaveNewStudentWithoutWritingToDb() {

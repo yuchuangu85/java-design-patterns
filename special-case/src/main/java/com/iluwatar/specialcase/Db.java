@@ -26,10 +26,10 @@ package com.iluwatar.specialcase;
 
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-/**
- * DB class for seeding user info.
- */
+/** DB class for seeding user info. */
 public class Db {
 
   private static Db instance;
@@ -116,36 +116,24 @@ public class Db {
     return itemName2Product.get(itemName);
   }
 
-  /**
-   * User class to store user info.
-   */
+  /** User class to store user info. */
+  @RequiredArgsConstructor
+  @Getter
   public class User {
 
-    private String userName;
-
-    public User(String userName) {
-      this.userName = userName;
-    }
-
-    public String getUserName() {
-      return userName;
-    }
+    private final String userName;
 
     public ReceiptDto purchase(Product item) {
       return new ReceiptDto(item.getPrice());
     }
   }
 
-  /**
-   * Account info.
-   */
-  public class Account {
+  /** Account info. */
+  @RequiredArgsConstructor
+  @Getter
+  public static class Account {
 
-    private Double amount;
-
-    public Account(Double amount) {
-      this.amount = amount;
-    }
+    private final Double amount;
 
     /**
      * Withdraw the price of the item from the account.
@@ -159,25 +147,13 @@ public class Db {
       }
       return new MoneyTransaction(amount, price);
     }
-
-    public Double getAmount() {
-      return amount;
-    }
   }
 
-  /**
-   * Product info.
-   */
-  public class Product {
+  /** Product info. */
+  @RequiredArgsConstructor
+  @Getter
+  public static class Product {
 
-    private Double price;
-
-    public Product(Double price) {
-      this.price = price;
-    }
-
-    public Double getPrice() {
-      return price;
-    }
+    private final Double price;
   }
 }

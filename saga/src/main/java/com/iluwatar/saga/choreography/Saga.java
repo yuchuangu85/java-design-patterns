@@ -27,6 +27,8 @@ package com.iluwatar.saga.choreography;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Saga representation. Saga consists of chapters. Every ChoreographyChapter is executed a certain
@@ -39,7 +41,6 @@ public class Saga {
   private boolean forward;
   private boolean finished;
 
-
   public static Saga create() {
     return new Saga();
   }
@@ -51,9 +52,7 @@ public class Saga {
    */
   public SagaResult getResult() {
     if (finished) {
-      return forward
-          ? SagaResult.FINISHED
-          : SagaResult.ROLLBACKED;
+      return forward ? SagaResult.FINISHED : SagaResult.ROLLBACKED;
     }
 
     return SagaResult.PROGRESS;
@@ -128,7 +127,6 @@ public class Saga {
     return --pos;
   }
 
-
   private Saga() {
     this.chapters = new ArrayList<>();
     this.pos = 0;
@@ -139,7 +137,6 @@ public class Saga {
   Chapter getCurrent() {
     return chapters.get(pos);
   }
-
 
   boolean isPresent() {
     return pos >= 0 && pos < chapters.size();
@@ -154,35 +151,13 @@ public class Saga {
    * outcoming parameter).
    */
   public static class Chapter {
-    private final String name;
-    private ChapterResult result;
-    private Object inValue;
-
+    @Getter private final String name;
+    @Setter private ChapterResult result;
+    @Getter @Setter private Object inValue;
 
     public Chapter(String name) {
       this.name = name;
       this.result = ChapterResult.INIT;
-    }
-
-    public Object getInValue() {
-      return inValue;
-    }
-
-    public void setInValue(Object object) {
-      this.inValue = object;
-    }
-
-    public String getName() {
-      return name;
-    }
-
-    /**
-     * set result.
-     *
-     * @param result {@link ChapterResult}
-     */
-    public void setResult(ChapterResult result) {
-      this.result = result;
     }
 
     /**
@@ -195,19 +170,18 @@ public class Saga {
     }
   }
 
-
-  /**
-   * result for chapter.
-   */
+  /** result for chapter. */
   public enum ChapterResult {
-    INIT, SUCCESS, ROLLBACK
+    INIT,
+    SUCCESS,
+    ROLLBACK
   }
 
-  /**
-   * result for saga.
-   */
+  /** result for saga. */
   public enum SagaResult {
-    PROGRESS, FINISHED, ROLLBACKED
+    PROGRESS,
+    FINISHED,
+    ROLLBACKED
   }
 
   @Override

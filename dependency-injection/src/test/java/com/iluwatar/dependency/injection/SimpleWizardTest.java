@@ -31,11 +31,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/10/15 - 8:26 PM
- *
- * @author Jeroen Meulemeester
- */
+/** SimpleWizardTest */
 class SimpleWizardTest {
 
   private InMemoryAppender appender;
@@ -61,5 +57,4 @@ class SimpleWizardTest {
     assertEquals("SimpleWizard smoking OldTobyTobacco", appender.getLastMessage());
     assertEquals(1, appender.getLogSize());
   }
-
 }

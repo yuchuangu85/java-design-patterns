@@ -30,20 +30,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/12/15 - 2:12 PM
- *
- * @author Jeroen Meulemeester
- */
+/** WeekdayTest */
 class WeekdayTest {
 
   @Test
   void testToString() {
-    Arrays.stream(Weekday.values()).forEach(weekday -> {
-      final String toString = weekday.toString();
-      assertNotNull(toString);
-      assertEquals(weekday.name(), toString.toUpperCase());
-    });
+    Arrays.stream(Weekday.values())
+        .forEach(
+            weekday -> {
+              final String toString = weekday.toString();
+              assertNotNull(toString);
+              assertEquals(weekday.name(), toString.toUpperCase());
+            });
   }
-
 }

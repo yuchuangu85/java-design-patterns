@@ -27,10 +27,10 @@ package com.iluwatar.datamapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import lombok.Getter;
 
-/**
- * Implementation of Actions on Students Data.
- */
+/** Implementation of Actions on Students Data. */
+@Getter
 public final class StudentDataMapperImpl implements StudentDataMapper {
 
   /* Note: Normally this would be in the form of an actual database */
@@ -44,11 +44,12 @@ public final class StudentDataMapperImpl implements StudentDataMapper {
   @Override
   public void update(Student studentToBeUpdated) throws DataMapperException {
     String name = studentToBeUpdated.getName();
-    Integer index = Optional.of(studentToBeUpdated)
-        .map(Student::getStudentId)
-        .flatMap(this::find)
-        .map(students::indexOf)
-        .orElseThrow(() -> new DataMapperException("Student [" + name + "] is not found"));
+    Integer index =
+        Optional.of(studentToBeUpdated)
+            .map(Student::getStudentId)
+            .flatMap(this::find)
+            .map(students::indexOf)
+            .orElseThrow(() -> new DataMapperException("Student [" + name + "] is not found"));
     students.set(index, studentToBeUpdated);
   }
 
@@ -69,9 +70,5 @@ public final class StudentDataMapperImpl implements StudentDataMapper {
       String name = studentToBeDeleted.getName();
       throw new DataMapperException("Student [" + name + "] is not found");
     }
-  }
-
-  public List<Student> getStudents() {
-    return this.students;
   }
 }

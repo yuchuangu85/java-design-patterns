@@ -25,24 +25,15 @@
 package concreteextensions;
 
 import abstractextensions.SergeantExtension;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import units.SergeantUnit;
 
-/**
- * Class defining Sergeant.
- */
-@Getter
-@RequiredArgsConstructor
+/** Class defining Sergeant. */
 @Slf4j
-public class Sergeant implements SergeantExtension {
-
-  private final SergeantUnit unit;
+public record Sergeant(SergeantUnit unit) implements SergeantExtension {
 
   @Override
   public void sergeantReady() {
     LOGGER.info("[Sergeant] " + unit.getName() + " is ready!");
   }
-
 }

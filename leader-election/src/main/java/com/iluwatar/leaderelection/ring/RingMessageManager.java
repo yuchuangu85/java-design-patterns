@@ -30,14 +30,10 @@ import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageType;
 import java.util.Map;
 
-/**
- * Implementation of RingMessageManager.
- */
+/** Implementation of RingMessageManager. */
 public class RingMessageManager extends AbstractMessageManager {
 
-  /**
-   * Constructor of RingMessageManager.
-   */
+  /** Constructor of RingMessageManager. */
   public RingMessageManager(Map<Integer, Instance> instanceMap) {
     super(instanceMap);
   }
@@ -51,16 +47,15 @@ public class RingMessageManager extends AbstractMessageManager {
   @Override
   public boolean sendHeartbeatMessage(int leaderId) {
     var leaderInstance = instanceMap.get(leaderId);
-    var alive = leaderInstance.isAlive();
-    return alive;
+    return leaderInstance.isAlive();
   }
 
   /**
    * Send election message to the next instance.
    *
    * @param currentId currentID
-   * @param content   list contains all the IDs of instances which have received this election
-   *                  message.
+   * @param content list contains all the IDs of instances which have received this election
+   *     message.
    * @return {@code true} if the election message is accepted by the target instance.
    */
   @Override
@@ -75,7 +70,7 @@ public class RingMessageManager extends AbstractMessageManager {
    * Send leader message to the next instance.
    *
    * @param currentId Instance ID of which sends this message.
-   * @param leaderId  Leader message content.
+   * @param leaderId Leader message content.
    * @return {@code true} if the leader message is accepted by the target instance.
    */
   @Override
@@ -97,5 +92,4 @@ public class RingMessageManager extends AbstractMessageManager {
     var heartbeatInvokeMessage = new Message(MessageType.HEARTBEAT_INVOKE, "");
     nextInstance.onMessage(heartbeatInvokeMessage);
   }
-
 }

@@ -30,11 +30,7 @@ import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * An event raised when applications stops, containing the stop time of the application.
- *
- * @author Paul Campbell (pcampbell@kemitix.net)
- */
+/** An event raised when applications stops, containing the stop time of the application. */
 @RequiredArgsConstructor
 @Getter
 public class StoppingData extends AbstractDataType {

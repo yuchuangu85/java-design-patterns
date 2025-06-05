@@ -24,16 +24,14 @@
  */
 package com.iluwatar.abstractdocument;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-/**
- * AbstractDocument test class
- */
+/** AbstractDocument test class */
 class AbstractDocumentTest {
 
   private static final String KEY = "key";
@@ -80,4 +78,53 @@ class AbstractDocumentTest {
     assertTrue(document.toString().contains(VALUE));
   }
 
+  @Test
+  void shouldHandleExceptionDuringConstruction() {
+    Map<String, Object> invalidProperties =
+        null; // Invalid properties, causing NullPointerException
+
+    // Throw null pointer exception
+    assertThrows(
+        NullPointerException.class,
+        () -> {
+          // Attempt to construct a document with invalid properties
+          new DocumentImplementation(invalidProperties);
+        });
+  }
+
+  @Test
+  void shouldPutAndGetNestedDocument() {
+    // Creating a nested document
+    DocumentImplementation nestedDocument = new DocumentImplementation(new HashMap<>());
+    nestedDocument.put("nestedKey", "nestedValue");
+
+    document.put("nested", nestedDocument);
+
+    // Retrieving the nested document
+    DocumentImplementation retrievedNestedDocument =
+        (DocumentImplementation) document.get("nested");
+
+    assertNotNull(retrievedNestedDocument);
+    assertEquals("nestedValue", retrievedNestedDocument.get("nestedKey"));
+  }
+
+  @Test
+  void shouldUpdateExistingValue() {
+    // Arrange
+    final String key = "key";
+    final String originalValue = "originalValue";
+    final String updatedValue = "updatedValue";
+
+    // Initializing the value
+    document.put(key, originalValue);
+
+    // Verifying that the initial value is retrieved correctly
+    assertEquals(originalValue, document.get(key));
+
+    // Updating the value
+    document.put(key, updatedValue);
+
+    // Verifying that the updated value is retrieved correctly
+    assertEquals(updatedValue, document.get(key));
+  }
 }

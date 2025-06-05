@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests {@link Student}.
- */
+/** Tests {@link Student}. */
 final class StudentTest {
 
   /**
@@ -41,7 +39,7 @@ final class StudentTest {
    * @throws Exception if any execution error during test
    */
   @Test
-  void testEquality() throws Exception {
+  void testEquality() {
 
     /* Create some students */
     final var firstStudent = new Student(1, "Adam", 'A');

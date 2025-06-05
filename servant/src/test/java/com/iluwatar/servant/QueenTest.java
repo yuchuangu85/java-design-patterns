@@ -24,17 +24,12 @@
  */
 package com.iluwatar.servant;
 
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/28/15 - 9:52 PM
- *
- * @author Jeroen Meulemeester
- */
+/** QueenTest */
 class QueenTest {
 
   @Test
@@ -68,5 +63,4 @@ class QueenTest {
     queen.changeMood();
     assertTrue(queen.getMood());
   }
-
 }

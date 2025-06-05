@@ -32,12 +32,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-/**
- * Date: 12/10/15 - 8:40 PM
- *
- * @author Jeroen Meulemeester
- */
+/** AdvancedWizardTest */
 class AdvancedWizardTest {
 
   private InMemoryAppender appender;
@@ -57,25 +52,21 @@ class AdvancedWizardTest {
    * through the constructor parameter
    */
   @Test
-  void testSmokeEveryThing() throws Exception {
+  void testSmokeEveryThing() {
 
-    List<Tobacco> tobaccos = List.of(
-        new OldTobyTobacco(),
-        new RivendellTobacco(),
-        new SecondBreakfastTobacco()
-    );
+    List<Tobacco> tobaccos =
+        List.of(new OldTobyTobacco(), new RivendellTobacco(), new SecondBreakfastTobacco());
 
     // Verify if the wizard is smoking the correct tobacco ...
-    tobaccos.forEach(tobacco -> {
-      final AdvancedWizard advancedWizard = new AdvancedWizard(tobacco);
-      advancedWizard.smoke();
-      String lastMessage = appender.getLastMessage();
-      assertEquals("AdvancedWizard smoking " + tobacco.getClass().getSimpleName(), lastMessage);
-    });
+    tobaccos.forEach(
+        tobacco -> {
+          final AdvancedWizard advancedWizard = new AdvancedWizard(tobacco);
+          advancedWizard.smoke();
+          String lastMessage = appender.getLastMessage();
+          assertEquals("AdvancedWizard smoking " + tobacco.getClass().getSimpleName(), lastMessage);
+        });
 
     // ... and nothing else is happening.
     assertEquals(tobaccos.size(), appender.getLogSize());
-
   }
-
 }

@@ -24,13 +24,11 @@
  */
 package com.iluwatar.retry;
 
-/**
- * Catastrophic error indicating that we have lost connection to our database.
- *
- * @author George Aristy (george.aristy@gmail.com)
- */
+import java.io.Serial;
+
+/** Catastrophic error indicating that we have lost connection to our database. */
 public final class DatabaseNotAvailableException extends BusinessException {
-  private static final long serialVersionUID = -3750769625095997799L;
+  @Serial private static final long serialVersionUID = -3750769625095997799L;
 
   /**
    * Ctor.

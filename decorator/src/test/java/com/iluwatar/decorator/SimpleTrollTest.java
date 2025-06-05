@@ -36,9 +36,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * Tests for {@link SimpleTroll}
- */
+/** Tests for {@link SimpleTroll} */
 class SimpleTrollTest {
 
   private InMemoryAppender appender;
@@ -67,7 +65,7 @@ class SimpleTrollTest {
     assertEquals(2, appender.getLogSize());
   }
 
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
     private final List<ILoggingEvent> log = new LinkedList<>();
 

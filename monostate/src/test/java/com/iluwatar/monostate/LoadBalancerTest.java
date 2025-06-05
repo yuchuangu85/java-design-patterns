@@ -35,11 +35,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/21/15 - 12:26 PM
- *
- * @author Jeroen Meulemeester
- */
+/** LoadBalancerTest */
 class LoadBalancerTest {
 
   @Test
@@ -72,7 +68,5 @@ class LoadBalancerTest {
 
     verify(server, times(2)).serve(request);
     verifyNoMoreInteractions(server);
-
   }
-
 }

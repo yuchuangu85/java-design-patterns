@@ -48,12 +48,7 @@ SOFTWARE.
 
 package com.iluwatar.databus;
 
-/**
- * Events are sent via the Data-Bus.
- *
- * @author Paul Campbell (pcampbell@kemitix.net)
- */
-
+/** Events are sent via the Data-Bus. */
 public interface DataType {
 
   /**

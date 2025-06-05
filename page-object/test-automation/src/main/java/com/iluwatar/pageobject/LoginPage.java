@@ -24,17 +24,15 @@
  */
 package com.iluwatar.pageobject;
 
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
-import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
-import com.gargoylesoftware.htmlunit.html.HtmlTextInput;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
+import org.htmlunit.WebClient;
+import org.htmlunit.html.HtmlPage;
+import org.htmlunit.html.HtmlPasswordInput;
+import org.htmlunit.html.HtmlSubmitInput;
+import org.htmlunit.html.HtmlTextInput;
 
-/**
- * Page Object encapsulating the Login Page (login.html)
- */
+/** Page Object encapsulating the Login Page (login.html) */
 @Slf4j
 public class LoginPage extends Page {
   private static final String LOGIN_PAGE_HTML_FILE = "login.html";
@@ -65,14 +63,11 @@ public class LoginPage extends Page {
     return this;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public boolean isAt() {
     return "Login".equals(page.getTitleText());
   }
-
 
   /**
    * Enters the username into the username input text field.
@@ -86,7 +81,6 @@ public class LoginPage extends Page {
     return this;
   }
 
-
   /**
    * Enters the password into the password input password field.
    *
@@ -98,7 +92,6 @@ public class LoginPage extends Page {
     passwordInputPasswordField.setText(password);
     return this;
   }
-
 
   /**
    * Clicking on the login button to 'login'.
@@ -115,5 +108,4 @@ public class LoginPage extends Page {
     }
     return new AlbumListPage(webClient);
   }
-
 }

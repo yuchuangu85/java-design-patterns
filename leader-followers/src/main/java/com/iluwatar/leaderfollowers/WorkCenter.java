@@ -26,6 +26,7 @@ package com.iluwatar.leaderfollowers;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import lombok.Getter;
 
 /**
  * A WorkCenter contains a leader and a list of idle workers. The leader is responsible for
@@ -34,12 +35,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class WorkCenter {
 
-  private Worker leader;
+  @Getter private Worker leader;
   private final List<Worker> workers = new CopyOnWriteArrayList<>();
 
-  /**
-   * Create workers and set leader.
-   */
+  /** Create workers and set leader. */
   public void createWorkers(int numberOfWorkers, TaskSet taskSet, TaskHandler taskHandler) {
     for (var id = 1; id <= numberOfWorkers; id++) {
       var worker = new Worker(id, this, taskSet, taskHandler);
@@ -56,16 +55,10 @@ public class WorkCenter {
     workers.remove(worker);
   }
 
-  public Worker getLeader() {
-    return leader;
-  }
-
-  /**
-   * Promote a leader.
-   */
+  /** Promote a leader. */
   public void promoteLeader() {
     Worker leader = null;
-    if (workers.size() > 0) {
+    if (!workers.isEmpty()) {
       leader = workers.get(0);
     }
     this.leader = leader;

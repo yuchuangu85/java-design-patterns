@@ -47,9 +47,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) {
     var states = new Stack<StarMemento>();
 
@@ -67,7 +65,7 @@ public class App {
     states.add(star.getMemento());
     star.timePasses();
     LOGGER.info(star.toString());
-    while (states.size() > 0) {
+    while (!states.isEmpty()) {
       star.setMemento(states.pop());
       LOGGER.info(star.toString());
     }

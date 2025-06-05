@@ -90,14 +90,14 @@ class CreatureTest {
     Assertions.assertEquals(orc, sword.getLocker());
   }
 
-  void killCreature(Creature source, Creature target) throws InterruptedException {
+  void killCreature(Creature source, Creature target) {
     while (target.isAlive()) {
       source.attack(target);
     }
   }
 
   @Test
-  void invalidDamageTest(){
+  void invalidDamageTest() {
     Assertions.assertThrows(IllegalArgumentException.class, () -> elf.hit(-50));
   }
 }

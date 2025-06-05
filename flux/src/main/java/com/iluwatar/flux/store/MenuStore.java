@@ -28,13 +28,12 @@ import com.iluwatar.flux.action.Action;
 import com.iluwatar.flux.action.ActionType;
 import com.iluwatar.flux.action.MenuAction;
 import com.iluwatar.flux.action.MenuItem;
+import lombok.Getter;
 
-/**
- * MenuStore is a concrete store.
- */
+/** MenuStore is a concrete store. */
 public class MenuStore extends Store {
 
-  private MenuItem selected = MenuItem.HOME;
+  @Getter private MenuItem selected = MenuItem.HOME;
 
   @Override
   public void onAction(Action action) {
@@ -43,9 +42,5 @@ public class MenuStore extends Store {
       selected = menuAction.getMenuItem();
       notifyChange();
     }
-  }
-
-  public MenuItem getSelected() {
-    return selected;
   }
 }

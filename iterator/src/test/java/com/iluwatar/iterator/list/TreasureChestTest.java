@@ -32,11 +32,7 @@ import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-/**
- * Date: 12/14/15 - 2:58 PM
- *
- * @author Jeroen Meulemeester
- */
+/** TreasureChestTest */
 class TreasureChestTest {
 
   /**
@@ -46,17 +42,16 @@ class TreasureChestTest {
    */
   public static List<Object[]> dataProvider() {
     return List.of(
-        new Object[]{new Item(ItemType.POTION, "Potion of courage")},
-        new Object[]{new Item(ItemType.RING, "Ring of shadows")},
-        new Object[]{new Item(ItemType.POTION, "Potion of wisdom")},
-        new Object[]{new Item(ItemType.POTION, "Potion of blood")},
-        new Object[]{new Item(ItemType.WEAPON, "Sword of silver +1")},
-        new Object[]{new Item(ItemType.POTION, "Potion of rust")},
-        new Object[]{new Item(ItemType.POTION, "Potion of healing")},
-        new Object[]{new Item(ItemType.RING, "Ring of armor")},
-        new Object[]{new Item(ItemType.WEAPON, "Steel halberd")},
-        new Object[]{new Item(ItemType.WEAPON, "Dagger of poison")}
-    );
+        new Object[] {new Item(ItemType.POTION, "Potion of courage")},
+        new Object[] {new Item(ItemType.RING, "Ring of shadows")},
+        new Object[] {new Item(ItemType.POTION, "Potion of wisdom")},
+        new Object[] {new Item(ItemType.POTION, "Potion of blood")},
+        new Object[] {new Item(ItemType.WEAPON, "Sword of silver +1")},
+        new Object[] {new Item(ItemType.POTION, "Potion of rust")},
+        new Object[] {new Item(ItemType.POTION, "Potion of healing")},
+        new Object[] {new Item(ItemType.RING, "Ring of armor")},
+        new Object[] {new Item(ItemType.WEAPON, "Steel halberd")},
+        new Object[] {new Item(ItemType.WEAPON, "Dagger of poison")});
   }
 
   /**
@@ -83,7 +78,6 @@ class TreasureChestTest {
     }
 
     fail("Expected to find item [" + expectedItem + "] using iterator, but we didn't.");
-
   }
 
   /**
@@ -92,7 +86,7 @@ class TreasureChestTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  void testGetItems(Item expectedItem) throws Exception {
+  void testGetItems(Item expectedItem) {
     final var chest = new TreasureChest();
     final var items = chest.getItems();
     assertNotNull(items);
@@ -110,7 +104,5 @@ class TreasureChestTest {
     }
 
     fail("Expected to find item [" + expectedItem + "] in the item list, but we didn't.");
-
   }
-
 }

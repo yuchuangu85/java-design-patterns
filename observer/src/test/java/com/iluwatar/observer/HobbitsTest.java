@@ -27,27 +27,20 @@ package com.iluwatar.observer;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Date: 12/27/15 - 12:07 PM
- *
- * @author Jeroen Meulemeester
- */
+/** HobbitsTest */
 class HobbitsTest extends WeatherObserverTest<Hobbits> {
 
   @Override
   public Collection<Object[]> dataProvider() {
     return List.of(
-        new Object[]{WeatherType.SUNNY, "The hobbits are facing Sunny weather now"},
-        new Object[]{WeatherType.RAINY, "The hobbits are facing Rainy weather now"},
-        new Object[]{WeatherType.WINDY, "The hobbits are facing Windy weather now"},
-        new Object[]{WeatherType.COLD, "The hobbits are facing Cold weather now"});
+        new Object[] {WeatherType.SUNNY, "The hobbits are facing Sunny weather now"},
+        new Object[] {WeatherType.RAINY, "The hobbits are facing Rainy weather now"},
+        new Object[] {WeatherType.WINDY, "The hobbits are facing Windy weather now"},
+        new Object[] {WeatherType.COLD, "The hobbits are facing Cold weather now"});
   }
 
-  /**
-   * Create a new test with the given weather and expected response
-   */
+  /** Create a new test with the given weather and expected response */
   public HobbitsTest() {
     super(Hobbits::new);
   }
-
 }

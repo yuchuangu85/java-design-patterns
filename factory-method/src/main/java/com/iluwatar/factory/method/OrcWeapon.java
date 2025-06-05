@@ -24,17 +24,8 @@
  */
 package com.iluwatar.factory.method;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
-/**
- * OrcWeapon.
- */
-@RequiredArgsConstructor
-@Getter
-public class OrcWeapon implements Weapon {
-
-  private final WeaponType weaponType;
+/** OrcWeapon. */
+public record OrcWeapon(WeaponType weaponType) implements Weapon {
 
   @Override
   public String toString() {

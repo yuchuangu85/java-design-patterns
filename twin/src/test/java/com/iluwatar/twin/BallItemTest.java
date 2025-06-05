@@ -41,11 +41,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * Date: 12/30/15 - 18:44 PM
- *
- * @author Jeroen Meulemeester
- */
+/** BallItemTest */
 class BallItemTest {
 
   private InMemoryAppender appender;
@@ -68,12 +64,14 @@ class BallItemTest {
 
     final var inOrder = inOrder(ballThread);
 
-    IntStream.range(0, 10).forEach(i -> {
-      ballItem.click();
-      inOrder.verify(ballThread).suspendMe();
-      ballItem.click();
-      inOrder.verify(ballThread).resumeMe();
-    });
+    IntStream.range(0, 10)
+        .forEach(
+            i -> {
+              ballItem.click();
+              inOrder.verify(ballThread).suspendMe();
+              ballItem.click();
+              inOrder.verify(ballThread).resumeMe();
+            });
 
     inOrder.verifyNoMoreInteractions();
   }
@@ -105,10 +103,8 @@ class BallItemTest {
     assertEquals(1, appender.getLogSize());
   }
 
-  /**
-   * Logging Appender Implementation
-   */
-  class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  /** Logging Appender Implementation */
+  static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender() {
@@ -129,5 +125,4 @@ class BallItemTest {
       return log.size();
     }
   }
-
 }

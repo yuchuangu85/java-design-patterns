@@ -33,7 +33,8 @@ import lombok.extern.slf4j.Slf4j;
  * used to handle a situation when you want to execute a method on an object which is not in a
  * proper state.
  *
- * @see <a href="http://java-design-patterns.com/patterns/guarded-suspension/">http://java-design-patterns.com/patterns/guarded-suspension/</a>
+ * @see <a
+ *     href="http://java-design-patterns.com/patterns/guarded-suspension/">http://java-design-patterns.com/patterns/guarded-suspension/</a>
  */
 @Slf4j
 public class GuardedQueue {
@@ -44,7 +45,7 @@ public class GuardedQueue {
   }
 
   /**
-   * Get the last element of the queue is exists.
+   * Get the last element of the queue if exists.
    *
    * @return last element of a queue if queue is not empty
    */
@@ -54,7 +55,7 @@ public class GuardedQueue {
         LOGGER.info("waiting");
         wait();
       } catch (InterruptedException e) {
-        e.printStackTrace();
+        LOGGER.error("Error occurred: ", e);
       }
     }
     LOGGER.info("getting");

@@ -24,16 +24,14 @@
  */
 package com.iluwatar.pageobject;
 
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import java.io.IOException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.htmlunit.WebClient;
+import org.htmlunit.html.HtmlAnchor;
+import org.htmlunit.html.HtmlPage;
 
-/**
- * Page Object encapsulating the Album List page (album-list.html)
- */
+/** Page Object encapsulating the Album List page (album-list.html) */
 @Slf4j
 public class AlbumListPage extends Page {
   private static final String ALBUM_LIST_HTML_FILE = "album-list.html";
@@ -41,14 +39,10 @@ public class AlbumListPage extends Page {
 
   private HtmlPage page;
 
-
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public AlbumListPage(WebClient webClient) {
     super(webClient);
   }
-
 
   /**
    * Navigates to the Album List Page.
@@ -64,9 +58,7 @@ public class AlbumListPage extends Page {
     return this;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public boolean isAt() {
     return "Album List".equals(page.getTitleText());
@@ -93,6 +85,4 @@ public class AlbumListPage extends Page {
     }
     throw new IllegalArgumentException("No links with the album title: " + albumTitle);
   }
-
-
 }

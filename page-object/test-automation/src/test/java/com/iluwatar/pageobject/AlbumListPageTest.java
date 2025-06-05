@@ -26,13 +26,11 @@ package com.iluwatar.pageobject;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.gargoylesoftware.htmlunit.WebClient;
+import org.htmlunit.WebClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Test Album Selection and Album Listing
- */
+/** Test Album Selection and Album Listing */
 class AlbumListPageTest {
 
   private final AlbumListPage albumListPage = new AlbumListPage(new WebClient());
@@ -48,5 +46,4 @@ class AlbumListPageTest {
     albumPage.navigateToPage();
     assertTrue(albumPage.isAt());
   }
-
 }

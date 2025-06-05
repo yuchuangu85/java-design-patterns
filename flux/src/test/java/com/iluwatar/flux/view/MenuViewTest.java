@@ -38,11 +38,7 @@ import com.iluwatar.flux.store.MenuStore;
 import com.iluwatar.flux.store.Store;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/12/15 - 10:31 PM
- *
- * @author Jeroen Meulemeester
- */
+/** MenuViewTest */
 class MenuViewTest {
 
   @Test
@@ -67,7 +63,5 @@ class MenuViewTest {
 
     // We should receive a menu click action and a content changed action
     verify(store, times(2)).onAction(any(Action.class));
-
   }
-
 }

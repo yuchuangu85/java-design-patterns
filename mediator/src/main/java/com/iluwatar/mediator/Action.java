@@ -24,9 +24,9 @@
  */
 package com.iluwatar.mediator;
 
-/**
- * Action enumeration.
- */
+import lombok.Getter;
+
+/** Action enumeration. */
 public enum Action {
   HUNT("hunted a rabbit", "arrives for dinner"),
   TALE("tells a tale", "comes to listen"),
@@ -35,15 +35,11 @@ public enum Action {
   NONE("", "");
 
   private final String title;
-  private final String description;
+  @Getter private final String description;
 
   Action(String title, String description) {
     this.title = title;
     this.description = description;
-  }
-
-  public String getDescription() {
-    return description;
   }
 
   public String toString() {

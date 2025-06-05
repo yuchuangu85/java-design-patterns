@@ -24,8 +24,6 @@
  */
 package com.iluwatar.servicetoworker;
 
-import lombok.Getter;
-
 /**
  * GiantController can update the giant data and redraw it using the view. Singleton object that
  * intercepts all requests and performs common functions.
@@ -46,7 +44,7 @@ public class GiantController {
   /**
    * Sets command to control the dispatcher.
    *
-   * @param s     the s
+   * @param s the s
    * @param index the index
    */
   public void setCommand(Command s, int index) {

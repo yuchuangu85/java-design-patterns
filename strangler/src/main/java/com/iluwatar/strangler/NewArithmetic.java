@@ -26,9 +26,7 @@ package com.iluwatar.strangler;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * System after whole migration. Only depends on new version source ({@link NewSource}).
- */
+/** System after whole migration. Only depends on new version source ({@link NewSource}). */
 @Slf4j
 public class NewArithmetic {
   private static final String VERSION = "2.0";
@@ -41,6 +39,7 @@ public class NewArithmetic {
 
   /**
    * Accumulate sum.
+   *
    * @param nums numbers need to add together
    * @return accumulate sum
    */
@@ -51,6 +50,7 @@ public class NewArithmetic {
 
   /**
    * Accumulate multiplication.
+   *
    * @param nums numbers need to multiply together
    * @return accumulate multiplication
    */
@@ -60,9 +60,10 @@ public class NewArithmetic {
   }
 
   /**
-   * Chech if has any zero.
+   * Check if it has any zero.
+   *
    * @param nums numbers need to check
-   * @return if has any zero, return true, else, return false
+   * @return if it has any zero, return true, else, return false
    */
   public boolean ifHasZero(int... nums) {
     LOGGER.info("Arithmetic check zero {}", VERSION);

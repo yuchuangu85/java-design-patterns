@@ -1,15 +1,7 @@
+# Pull Request Template
 
-Pull request title
+## What does this PR do?
 
-- Clearly and concisely describes what it does
-- Refer to the issue that it solves, if available
+<!-- Provide a short description of what this pull request does. -->
 
-
-Pull request description
-
-- Describes the main changes that come with the pull request
-- Any relevant additional information is provided
-
-
-
-> For detailed contributing instructions see https://github.com/iluwatar/java-design-patterns/wiki/01.-How-to-contribute
+<!-- Fixes #<issue-number> (if applicable) -->

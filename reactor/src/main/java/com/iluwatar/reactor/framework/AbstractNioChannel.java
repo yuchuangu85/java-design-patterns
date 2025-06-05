@@ -32,6 +32,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import lombok.Getter;
 
 /**
  * This represents the <i>Handle</i> of Reactor pattern. These are resources managed by OS which can
@@ -46,7 +47,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public abstract class AbstractNioChannel {
 
   private final SelectableChannel channel;
-  private final ChannelHandler handler;
+  @Getter private final ChannelHandler handler;
   private final Map<SelectableChannel, Queue<Object>> channelToPendingWrites;
   private NioReactor reactor;
 
@@ -62,9 +63,7 @@ public abstract class AbstractNioChannel {
     this.channelToPendingWrites = new ConcurrentHashMap<>();
   }
 
-  /**
-   * Injects the reactor in this channel.
-   */
+  /** Injects the reactor in this channel. */
   void setReactor(NioReactor reactor) {
     this.reactor = reactor;
   }
@@ -104,15 +103,6 @@ public abstract class AbstractNioChannel {
    */
   public abstract Object read(SelectionKey key) throws IOException;
 
-  /**
-   * Get handler.
-   *
-   * @return the handler associated with this channel.
-   */
-  public ChannelHandler getHandler() {
-    return handler;
-  }
-
   /*
    * Called from the context of reactor thread when the key becomes writable. The channel writes the
    * whole pending block of data at once.
@@ -132,7 +122,7 @@ public abstract class AbstractNioChannel {
    * Writes the data to the channel.
    *
    * @param pendingWrite the data to be written on channel.
-   * @param key          the key which is writable.
+   * @param key the key which is writable.
    * @throws IOException if any I/O error occurs.
    */
   protected abstract void doWrite(Object pendingWrite, SelectionKey key) throws IOException;
@@ -156,17 +146,15 @@ public abstract class AbstractNioChannel {
    * </pre>
    *
    * @param data the data to be written on underlying channel.
-   * @param key  the key which is writable.
+   * @param key the key which is writable.
    */
   public void write(Object data, SelectionKey key) {
     var pendingWrites = this.channelToPendingWrites.get(key.channel());
     if (pendingWrites == null) {
       synchronized (this.channelToPendingWrites) {
-        pendingWrites = this.channelToPendingWrites.get(key.channel());
-        if (pendingWrites == null) {
-          pendingWrites = new ConcurrentLinkedQueue<>();
-          this.channelToPendingWrites.put(key.channel(), pendingWrites);
-        }
+        pendingWrites =
+            this.channelToPendingWrites.computeIfAbsent(
+                key.channel(), k -> new ConcurrentLinkedQueue<>());
       }
     }
     pendingWrites.add(data);

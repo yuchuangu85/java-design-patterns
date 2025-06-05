@@ -39,19 +39,20 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   int failureCount;
   private final int failureThreshold;
   private State state;
-  private final long futureTime = 1000L * 1000 * 1000 * 1000;
+  // Future time offset, in nanoseconds
+  private final long futureTime = 1_000_000_000_000L;
 
   /**
    * Constructor to create an instance of Circuit Breaker.
    *
-   * @param timeout          Timeout for the API request. Not necessary for this simple example
+   * @param timeout Timeout for the API request. Not necessary for this simple example
    * @param failureThreshold Number of failures we receive from the depended on service before
-   *                         changing state to 'OPEN'
-   * @param retryTimePeriod  Time, in nanoseconds, period after which a new request is made to
-   *                         remote service for status check.
+   *     changing state to 'OPEN'
+   * @param retryTimePeriod Time, in nanoseconds, period after which a new request is made to remote
+   *     service for status check.
    */
-  DefaultCircuitBreaker(RemoteService serviceToCall, long timeout, int failureThreshold,
-      long retryTimePeriod) {
+  DefaultCircuitBreaker(
+      RemoteService serviceToCall, long timeout, int failureThreshold, long retryTimePeriod) {
     this.service = serviceToCall;
     // We start in a closed state hoping that everything is fine
     this.state = State.CLOSED;
@@ -60,7 +61,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
     // Used to break the calls made to remote resource if it exceeds the limit
     this.timeout = timeout;
     this.retryTimePeriod = retryTimePeriod;
-    //An absurd amount of time in future which basically indicates the last failure never happened
+    // An absurd amount of time in future which basically indicates the last failure never happened
     this.lastFailureTime = System.nanoTime() + futureTime;
     this.failureCount = 0;
   }
@@ -83,16 +84,16 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
 
   // Evaluate the current state based on failureThreshold, failureCount and lastFailureTime.
   protected void evaluateState() {
-    if (failureCount >= failureThreshold) { //Then something is wrong with remote service
+    if (failureCount >= failureThreshold) { // Then something is wrong with remote service
       if ((System.nanoTime() - lastFailureTime) > retryTimePeriod) {
-        //We have waited long enough and should try checking if service is up
+        // We have waited long enough and should try checking if service is up
         state = State.HALF_OPEN;
       } else {
-        //Service would still probably be down
+        // Service would still probably be down
         state = State.OPEN;
       }
     } else {
-      //Everything is working fine
+      // Everything is working fine
       state = State.CLOSED;
     }
   }
@@ -139,9 +140,9 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
     } else {
       // Make the API request if the circuit is not OPEN
       try {
-        //In a real application, this would be run in a thread and the timeout
-        //parameter of the circuit breaker would be utilized to know if service
-        //is working. Here, we simulate that based on server response itself
+        // In a real application, this would be run in a thread and the timeout
+        // parameter of the circuit breaker would be utilized to know if service
+        // is working. Here, we simulate that based on server response itself
         var response = service.call();
         // Yay!! the API responded fine. Let's reset everything.
         recordSuccess();

@@ -38,17 +38,16 @@ import lombok.extern.slf4j.Slf4j;
  * The Data Transfer Object pattern is a design pattern in which an data transfer object is used to
  * serve related information together to avoid multiple call for each piece of information.
  *
- * <p>In the first example, {@link App} is a customer details consumer i.e. client to
- * request for customer details to server. {@link CustomerResource} act as server to serve customer
- * information. {@link CustomerDto} is data transfer object to share customer information.
+ * <p>In the first example, {@link App} is a customer details consumer i.e. client to request for
+ * customer details to server. {@link CustomerResource} act as server to serve customer information.
+ * {@link CustomerDto} is data transfer object to share customer information.
  *
- * <p>In the second example, {@link App} is a product details consumer i.e. client to
- * request for product details to server. {@link ProductResource} acts as server to serve
- * product information. {@link ProductDto} is data transfer object to share product information.
+ * <p>In the second example, {@link App} is a product details consumer i.e. client to request for
+ * product details to server. {@link ProductResource} acts as server to serve product information.
+ * {@link ProductDto} is data transfer object to share product information.
  *
  * <p>The pattern implementation is a bit different in each of the examples. The first can be
  * thought as a traditional example and the second is an enum based implementation.
- *
  */
 @Slf4j
 public class App {
@@ -67,15 +66,15 @@ public class App {
 
     var customerResource = new CustomerResource(customers);
 
-    LOGGER.info("All customers:-");
-    var allCustomers = customerResource.getAllCustomers();
+    LOGGER.info("All customers:");
+    var allCustomers = customerResource.customers();
     printCustomerDetails(allCustomers);
 
     LOGGER.info("----------------------------------------------------------");
 
     LOGGER.info("Deleting customer with id {1}");
-    customerResource.delete(customerOne.getId());
-    allCustomers = customerResource.getAllCustomers();
+    customerResource.delete(customerOne.id());
+    allCustomers = customerResource.customers();
     printCustomerDetails(allCustomers);
 
     LOGGER.info("----------------------------------------------------------");
@@ -83,33 +82,37 @@ public class App {
     LOGGER.info("Adding customer three}");
     var customerThree = new CustomerDto("3", "Lynda", "Blair");
     customerResource.save(customerThree);
-    allCustomers = customerResource.getAllCustomers();
+    allCustomers = customerResource.customers();
     printCustomerDetails(allCustomers);
 
     // Example 2: Product DTO
 
-    Product tv = Product.builder().id(1L).name("TV").supplier("Sony").price(1000D).cost(1090D).build();
+    Product tv =
+        Product.builder().id(1L).name("TV").supplier("Sony").price(1000D).cost(1090D).build();
     Product microwave =
         Product.builder()
             .id(2L)
             .name("microwave")
             .supplier("Delonghi")
             .price(1000D)
-            .cost(1090D).build();
+            .cost(1090D)
+            .build();
     Product refrigerator =
         Product.builder()
             .id(3L)
             .name("refrigerator")
             .supplier("Botsch")
             .price(1000D)
-            .cost(1090D).build();
+            .cost(1090D)
+            .build();
     Product airConditioner =
         Product.builder()
             .id(4L)
             .name("airConditioner")
             .supplier("LG")
             .price(1000D)
-            .cost(1090D).build();
+            .cost(1090D)
+            .build();
     List<Product> products =
         new ArrayList<>(Arrays.asList(tv, microwave, refrigerator, airConditioner));
     ProductResource productResource = new ProductResource(products);
@@ -131,10 +134,10 @@ public class App {
     productResource.save(createProductRequestDto);
     LOGGER.info(
         "####### List of products after adding PS5: {}",
-        Arrays.toString(productResource.getProducts().toArray()));
+        Arrays.toString(productResource.products().toArray()));
   }
 
   private static void printCustomerDetails(List<CustomerDto> allCustomers) {
-    allCustomers.forEach(customer -> LOGGER.info(customer.getFirstName()));
+    allCustomers.forEach(customer -> LOGGER.info(customer.firstName()));
   }
 }

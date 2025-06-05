@@ -24,18 +24,12 @@
  */
 package com.iluwatar.lazy.loading;
 
-import java.lang.reflect.Field;
 import java.util.function.Supplier;
 
-/**
- * Date: 12/19/15 - 12:27 PM
- *
- * @author Jeroen Meulemeester
- */
+/** Java8HolderTest */
 class Java8HolderTest extends AbstractHolderTest {
 
   private final Java8Holder holder = new Java8Holder();
-
 
   @Override
   Heavy getInternalHeavyValue() throws Exception {
@@ -57,8 +51,7 @@ class Java8HolderTest extends AbstractHolderTest {
   }
 
   @Override
-  Heavy getHeavy() throws Exception {
+  Heavy getHeavy() {
     return holder.getHeavy();
   }
-
 }

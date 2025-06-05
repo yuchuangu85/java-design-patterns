@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class represents a Ball which extends {@link GameItem} and implements the logic for ball
- * item, like move and draw. It hold a reference of {@link BallThread} to delegate the suspend and
+ * item, like move and draw. It holds a reference of {@link BallThread} to delegate the suspend and
  * resume task.
  */
 @Slf4j
@@ -37,8 +37,7 @@ public class BallItem extends GameItem {
 
   private boolean isSuspended;
 
-  @Setter
-  private BallThread twin;
+  @Setter private BallThread twin;
 
   @Override
   public void doDraw() {
@@ -62,4 +61,3 @@ public class BallItem extends GameItem {
     }
   }
 }
-

@@ -51,11 +51,7 @@ package com.iluwatar.databus;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Base for data to send via the Data-Bus.
- *
- * @author Paul Campbell (pcampbell@kemitix.net)
- */
+/** Base for data to send via the Data-Bus. */
 @Getter
 @Setter
 public class AbstractDataType implements DataType {

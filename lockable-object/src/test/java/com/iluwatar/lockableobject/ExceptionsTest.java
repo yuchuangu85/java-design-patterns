@@ -29,17 +29,16 @@ import org.junit.jupiter.api.Test;
 
 class ExceptionsTest {
 
-  private String msg = "test";
+  private static final String MSG = "test";
 
   @Test
-  void testException(){
+  void testException() {
     Exception e;
-    try{
-      throw new LockingException(msg);
-    }
-    catch(LockingException ex){
+    try {
+      throw new LockingException(MSG);
+    } catch (LockingException ex) {
       e = ex;
     }
-    Assertions.assertEquals(msg, e.getMessage());
+    Assertions.assertEquals(MSG, e.getMessage());
   }
 }

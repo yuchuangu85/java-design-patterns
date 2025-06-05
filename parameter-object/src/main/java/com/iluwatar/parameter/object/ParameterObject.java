@@ -24,28 +24,27 @@
  */
 package com.iluwatar.parameter.object;
 
-/**
- * ParameterObject.
- */
+import lombok.Getter;
+import lombok.Setter;
+
+/** ParameterObject. */
+@Getter
+@Setter
 public class ParameterObject {
 
-  /**
-   * Default values are defined here.
-   */
+  /** Default values are defined here. */
   public static final String DEFAULT_SORT_BY = "price";
+
   public static final SortOrder DEFAULT_SORT_ORDER = SortOrder.ASC;
 
   private String type;
 
-  /**
-   * Default values are assigned here.
-   */
+  /** Default values are assigned here. */
   private String sortBy = DEFAULT_SORT_BY;
+
   private SortOrder sortOrder = DEFAULT_SORT_ORDER;
 
-  /**
-   * Overriding default values on object creation only when builder object has a valid value.
-   */
+  /** Overriding default values on object creation only when builder object has a valid value. */
   private ParameterObject(Builder builder) {
     setType(builder.type);
     setSortBy(builder.sortBy != null && !builder.sortBy.isBlank() ? builder.sortBy : sortBy);
@@ -56,47 +55,20 @@ public class ParameterObject {
     return new Builder();
   }
 
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
-  }
-
-  public String getSortBy() {
-    return sortBy;
-  }
-
-  public void setSortBy(String sortBy) {
-    this.sortBy = sortBy;
-  }
-
-  public SortOrder getSortOrder() {
-    return sortOrder;
-  }
-
-  public void setSortOrder(SortOrder sortOrder) {
-    this.sortOrder = sortOrder;
-  }
-
   @Override
   public String toString() {
-    return String.format("ParameterObject[type='%s', sortBy='%s', sortOrder='%s']",
-        type, sortBy, sortOrder);
+    return String.format(
+        "ParameterObject[type='%s', sortBy='%s', sortOrder='%s']", type, sortBy, sortOrder);
   }
 
-  /**
-   * Builder for ParameterObject.
-   */
+  /** Builder for ParameterObject. */
   public static final class Builder {
 
     private String type;
     private String sortBy;
     private SortOrder sortOrder;
 
-    private Builder() {
-    }
+    private Builder() {}
 
     public Builder withType(String type) {
       this.type = type;

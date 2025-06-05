@@ -24,14 +24,11 @@
  */
 package com.iluwatar.promise;
 
-import java.util.concurrent.ExecutionException;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * Application test.
- */
+import org.junit.jupiter.api.Test;
+
+/** Application test. */
 class AppTest {
 
   @Test

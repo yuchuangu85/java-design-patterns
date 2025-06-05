@@ -24,19 +24,14 @@
  */
 package com.iluwatar.async.method.invocation;
 
-import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Implementation of async executor that creates a new thread for every task.
- */
+/** Implementation of async executor that creates a new thread for every task. */
 public class ThreadAsyncExecutor implements AsyncExecutor {
 
-  /**
-   * Index for thread naming.
-   */
+  /** Index for thread naming. */
   private final AtomicInteger idx = new AtomicInteger(0);
 
   @Override
@@ -47,19 +42,22 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
   @Override
   public <T> AsyncResult<T> startProcess(Callable<T> task, AsyncCallback<T> callback) {
     var result = new CompletableResult<>(callback);
-    new Thread(() -> {
-      try {
-        result.setValue(task.call());
-      } catch (Exception ex) {
-        result.setException(ex);
-      }
-    }, "executor-" + idx.incrementAndGet()).start();
+    new Thread(
+            () -> {
+              try {
+                result.setValue(task.call());
+              } catch (Exception ex) {
+                result.setException(ex);
+              }
+            },
+            "executor-" + idx.incrementAndGet())
+        .start();
     return result;
   }
 
   @Override
-  public <T> T endProcess(AsyncResult<T> asyncResult) throws ExecutionException,
-      InterruptedException {
+  public <T> T endProcess(AsyncResult<T> asyncResult)
+      throws ExecutionException, InterruptedException {
     if (!asyncResult.isCompleted()) {
       asyncResult.await();
     }
@@ -81,7 +79,7 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
     static final int COMPLETED = 3;
 
     final Object lock;
-    final Optional<AsyncCallback<T>> callback;
+    final AsyncCallback<T> callback;
 
     volatile int state = RUNNING;
     T value;
@@ -89,7 +87,11 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 
     CompletableResult(AsyncCallback<T> callback) {
       this.lock = new Object();
-      this.callback = Optional.ofNullable(callback);
+      this.callback = callback;
+    }
+
+    boolean hasCallback() {
+      return callback != null;
     }
 
     /**
@@ -101,7 +103,9 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
     void setValue(T value) {
       this.value = value;
       this.state = COMPLETED;
-      this.callback.ifPresent(ac -> ac.onComplete(value, Optional.empty()));
+      if (hasCallback()) {
+        callback.onComplete(value);
+      }
       synchronized (lock) {
         lock.notifyAll();
       }
@@ -116,7 +120,9 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
     void setException(Exception exception) {
       this.exception = exception;
       this.state = FAILED;
-      this.callback.ifPresent(ac -> ac.onComplete(null, Optional.of(exception)));
+      if (hasCallback()) {
+        callback.onError(exception);
+      }
       synchronized (lock) {
         lock.notifyAll();
       }

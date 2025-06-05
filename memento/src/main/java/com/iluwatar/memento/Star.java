@@ -24,27 +24,24 @@
  */
 package com.iluwatar.memento;
 
-/**
- * Star uses "mementos" to store and restore state.
- */
+import lombok.Getter;
+import lombok.Setter;
+
+/** Star uses "mementos" to store and restore state. */
 public class Star {
 
   private StarType type;
   private int ageYears;
   private int massTons;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Star(StarType startType, int startAge, int startMass) {
     this.type = startType;
     this.ageYears = startAge;
     this.massTons = startMass;
   }
 
-  /**
-   * Makes time pass for the star.
-   */
+  /** Makes time pass for the star. */
   public void timePasses() {
     ageYears *= 2;
     massTons *= 8;
@@ -57,8 +54,7 @@ public class Star {
         ageYears *= 2;
         massTons = 0;
       }
-      default -> {
-      }
+      default -> {}
     }
   }
 
@@ -82,37 +78,13 @@ public class Star {
     return String.format("%s age: %d years mass: %d tons", type.toString(), ageYears, massTons);
   }
 
-  /**
-   * StarMemento implementation.
-   */
+  /** StarMemento implementation. */
+  @Getter
+  @Setter
   private static class StarMementoInternal implements StarMemento {
 
     private StarType type;
     private int ageYears;
     private int massTons;
-
-    public StarType getType() {
-      return type;
-    }
-
-    public void setType(StarType type) {
-      this.type = type;
-    }
-
-    public int getAgeYears() {
-      return ageYears;
-    }
-
-    public void setAgeYears(int ageYears) {
-      this.ageYears = ageYears;
-    }
-
-    public int getMassTons() {
-      return massTons;
-    }
-
-    public void setMassTons(int massTons) {
-      this.massTons = massTons;
-    }
   }
 }

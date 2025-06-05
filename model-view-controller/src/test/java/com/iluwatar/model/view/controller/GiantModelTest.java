@@ -28,16 +28,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/20/15 - 2:10 PM
- *
- * @author Jeroen Meulemeester
- */
+/** GiantModelTest */
 class GiantModelTest {
 
-  /**
-   * Verify if the health value is set properly though the constructor and setter
-   */
+  /** Verify if the health value is set properly though the constructor and setter */
   @Test
   void testSetHealth() {
     final var model = new GiantModel(Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
@@ -50,9 +44,7 @@ class GiantModelTest {
     }
   }
 
-  /**
-   * Verify if the fatigue level is set properly though the constructor and setter
-   */
+  /** Verify if the fatigue level is set properly though the constructor and setter */
   @Test
   void testSetFatigue() {
     final var model = new GiantModel(Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
@@ -65,9 +57,7 @@ class GiantModelTest {
     }
   }
 
-  /**
-   * Verify if the nourishment level is set properly though the constructor and setter
-   */
+  /** Verify if the nourishment level is set properly though the constructor and setter */
   @Test
   void testSetNourishment() {
     final var model = new GiantModel(Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
@@ -79,5 +69,4 @@ class GiantModelTest {
       assertEquals(String.format(messageFormat, nourishment), model.toString());
     }
   }
-
 }

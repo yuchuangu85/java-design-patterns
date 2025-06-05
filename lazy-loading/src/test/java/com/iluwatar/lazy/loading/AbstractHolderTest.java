@@ -32,11 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/19/15 - 11:58 AM
- *
- * @author Jeroen Meulemeester
- */
+/** AbstractHolderTest */
 public abstract class AbstractHolderTest {
 
   /**
@@ -51,19 +47,20 @@ public abstract class AbstractHolderTest {
    *
    * @return The lazy loaded {@link Heavy} object
    */
-  abstract Heavy getHeavy() throws Exception;
+  abstract Heavy getHeavy();
 
   /**
    * This test shows that the heavy field is not instantiated until the method getHeavy is called
    */
   @Test
-  void testGetHeavy() throws Exception {
-    assertTimeout(ofMillis(3000), () -> {
-      assertNull(getInternalHeavyValue());
-      assertNotNull(getHeavy());
-      assertNotNull(getInternalHeavyValue());
-      assertSame(getHeavy(), getInternalHeavyValue());
-    });
+  void testGetHeavy() {
+    assertTimeout(
+        ofMillis(3000),
+        () -> {
+          assertNull(getInternalHeavyValue());
+          assertNotNull(getHeavy());
+          assertNotNull(getInternalHeavyValue());
+          assertSame(getHeavy(), getInternalHeavyValue());
+        });
   }
-
 }

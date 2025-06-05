@@ -24,29 +24,17 @@
  */
 package com.iluwatar.leaderfollowers;
 
-/**
- * A unit of work to be processed by the Workers.
- */
+import lombok.Getter;
+import lombok.Setter;
+
+/** A unit of work to be processed by the Workers. */
 public class Task {
 
-  private final int time;
+  @Getter private final int time;
 
-  private boolean finished;
+  @Getter @Setter private boolean finished;
 
   public Task(int time) {
     this.time = time;
   }
-
-  public int getTime() {
-    return time;
-  }
-
-  public void setFinished() {
-    this.finished = true;
-  }
-
-  public boolean isFinished() {
-    return this.finished;
-  }
-
 }

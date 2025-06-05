@@ -1,5 +1,6 @@
 ---
 title: Async Method Invocation
+shortTitle: Async Method Invocation
 category: Concurrency
 language: es
 tag:
@@ -9,7 +10,7 @@ tag:
 ## Propósito
 
 Asynchronous method invocation (invocación de método asincrónico) es un patrón con el que el hilo o subproceso de llamada
-no se bloquea mientras espera resultados. El patrón proporciona pocesamiento en paralelo de múltiples tareas independientes y recupera los resultados a través de
+no se bloquea mientras espera resultados. El patrón proporciona procesamiento en paralelo de múltiples tareas independientes y recupera los resultados a través de
 devoluciones de llamada (callbacks) o esperando hasta que termine el procedimiento.
 
 ## Explicación
@@ -22,7 +23,7 @@ Ejemplo cotidiano
 En otras palabras
 
 > La invocación del método asíncrono inicia el procedimiento y vuelve inmediatamente antes de que la tarea termine
-> Los resultados del procedimiento se devuelven a la llamada  posteriormente (callback).
+> Los resultados del procedimiento se devuelven a la llamada posteriormente (callback).
 
 Según Wikipedia
 

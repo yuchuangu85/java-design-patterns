@@ -34,16 +34,13 @@ import java.util.function.Function;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/30/15 - 18:59 PM. Test related to Units
+ * Test related to Units
  *
  * @param <U> Type of Unit
- * @author Jeroen Meulemeester
  */
 public abstract class UnitTest<U extends Unit> {
 
-  /**
-   * Factory to create new instances of the tested unit.
-   */
+  /** Factory to create new instances of the tested unit. */
   private final Function<Unit[], U> factory;
 
   /**
@@ -74,9 +71,8 @@ public abstract class UnitTest<U extends Unit> {
   /**
    * Verify if the correct visit method is called on the mock, depending on the tested instance.
    *
-   * @param unit          The tested unit instance
+   * @param unit The tested unit instance
    * @param mockedVisitor The mocked {@link UnitVisitor} who should have gotten a visit by the unit
    */
   abstract void verifyVisit(final U unit, final UnitVisitor mockedVisitor);
-
 }

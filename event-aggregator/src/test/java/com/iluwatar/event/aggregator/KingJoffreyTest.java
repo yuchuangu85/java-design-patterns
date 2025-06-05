@@ -37,11 +37,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * Date: 12/12/15 - 3:04 PM
- *
- * @author Jeroen Meulemeester
- */
+/** KingJoffreyTest */
 class KingJoffreyTest {
 
   private InMemoryAppender appender;
@@ -56,25 +52,24 @@ class KingJoffreyTest {
     appender.stop();
   }
 
-  /**
-   * Test if {@link KingJoffrey} tells us what event he received
-   */
+  /** Test if {@link KingJoffrey} tells us what event he received */
   @Test
   void testOnEvent() {
     final var kingJoffrey = new KingJoffrey();
 
-    IntStream.range(0, Event.values().length).forEach(i -> {
-      assertEquals(i, appender.getLogSize());
-      var event = Event.values()[i];
-      kingJoffrey.onEvent(event);
-      final var expectedMessage = "Received event from the King's Hand: " + event.toString();
-      assertEquals(expectedMessage, appender.getLastMessage());
-      assertEquals(i + 1, appender.getLogSize());
-    });
-
+    IntStream.range(0, Event.values().length)
+        .forEach(
+            i -> {
+              assertEquals(i, appender.getLogSize());
+              var event = Event.values()[i];
+              kingJoffrey.onEvent(event);
+              final var expectedMessage = "Received event from the King's Hand: " + event;
+              assertEquals(expectedMessage, appender.getLastMessage());
+              assertEquals(i + 1, appender.getLogSize());
+            });
   }
 
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender(Class<?> clazz) {
@@ -95,5 +90,4 @@ class KingJoffreyTest {
       return log.size();
     }
   }
-
 }

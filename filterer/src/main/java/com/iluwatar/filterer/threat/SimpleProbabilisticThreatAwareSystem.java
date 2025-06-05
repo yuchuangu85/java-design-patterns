@@ -27,14 +27,11 @@ package com.iluwatar.filterer.threat;
 import com.iluwatar.filterer.domain.Filterer;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-/**
- * {@inheritDoc}
- */
+/** {@inheritDoc} */
 @ToString
 @EqualsAndHashCode
 @RequiredArgsConstructor
@@ -43,25 +40,19 @@ public class SimpleProbabilisticThreatAwareSystem implements ProbabilisticThreat
   private final String systemId;
   private final List<ProbableThreat> threats;
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public String systemId() {
     return systemId;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public List<? extends ProbableThreat> threats() {
     return threats;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public Filterer<? extends ProbabilisticThreatAwareSystem, ? extends ProbableThreat> filtered() {
     return this::filteredGroup;
@@ -72,11 +63,7 @@ public class SimpleProbabilisticThreatAwareSystem implements ProbabilisticThreat
     return new SimpleProbabilisticThreatAwareSystem(this.systemId, filteredItems(predicate));
   }
 
-  private List<ProbableThreat> filteredItems(
-      final Predicate<? super ProbableThreat> predicate) {
-    return this.threats.stream()
-        .filter(predicate)
-        .toList();
+  private List<ProbableThreat> filteredItems(final Predicate<? super ProbableThreat> predicate) {
+    return this.threats.stream().filter(predicate).toList();
   }
-
 }

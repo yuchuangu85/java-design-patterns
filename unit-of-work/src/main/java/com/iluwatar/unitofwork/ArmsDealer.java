@@ -30,9 +30,7 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * {@link ArmsDealer} Weapon repository that supports unit of work for weapons.
- */
+/** {@link ArmsDealer} Weapon repository that supports unit of work for weapons. */
 @Slf4j
 @RequiredArgsConstructor
 public class ArmsDealer implements UnitOfWork<Weapon> {
@@ -50,7 +48,6 @@ public class ArmsDealer implements UnitOfWork<Weapon> {
   public void registerModified(Weapon weapon) {
     LOGGER.info("Registering {} for modify in context.", weapon.getName());
     register(weapon, UnitActions.MODIFY.getActionValue());
-
   }
 
   @Override
@@ -68,12 +65,10 @@ public class ArmsDealer implements UnitOfWork<Weapon> {
     context.put(operation, weaponsToOperate);
   }
 
-  /**
-   * All UnitOfWork operations are batched and executed together on commit only.
-   */
+  /** All UnitOfWork operations are batched and executed together on commit only. */
   @Override
   public void commit() {
-    if (context == null || context.size() == 0) {
+    if (context == null || context.isEmpty()) {
       return;
     }
     LOGGER.info("Commit started");

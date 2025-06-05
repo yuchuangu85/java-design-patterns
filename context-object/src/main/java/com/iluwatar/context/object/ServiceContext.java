@@ -26,11 +26,8 @@ package com.iluwatar.context.object;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
-/**
- * Where context objects are defined.
- */
+/** Where context objects are defined. */
 @Getter
 @Setter
 public class ServiceContext {

@@ -31,17 +31,15 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/30/15 - 18:59 PM. Test case for Visitor Pattern
+ * Test case for Visitor Pattern
  *
  * @param <V> Type of UnitVisitor
- * @author Jeroen Meulemeester
  */
 public abstract class VisitorTest<V extends UnitVisitor> {
 
@@ -57,39 +55,30 @@ public abstract class VisitorTest<V extends UnitVisitor> {
     appender.stop();
   }
 
-  /**
-   * The tested visitor instance.
-   */
+  /** The tested visitor instance. */
   private final V visitor;
 
-  /**
-   * The optional expected response when being visited by a commander.
-   */
-  private final Optional<String> commanderResponse;
+  /** The expected response when being visited by a commander. */
+  private final String commanderResponse;
 
-  /**
-   * The optional expected response when being visited by a sergeant.
-   */
-  private final Optional<String> sergeantResponse;
+  /** The expected response when being visited by a sergeant. */
+  private final String sergeantResponse;
 
-  /**
-   * The optional expected response when being visited by a soldier.
-   */
-  private final Optional<String> soldierResponse;
+  /** The expected response when being visited by a soldier. */
+  private final String soldierResponse;
 
   /**
    * Create a new test instance for the given visitor.
    *
-   * @param commanderResponse The optional expected response when being visited by a commander
-   * @param sergeantResponse  The optional expected response when being visited by a sergeant
-   * @param soldierResponse   The optional expected response when being visited by a soldier
+   * @param commanderResponse The expected response when being visited by a commander
+   * @param sergeantResponse The expected response when being visited by a sergeant
+   * @param soldierResponse The expected response when being visited by a soldier
    */
   public VisitorTest(
       final V visitor,
-      final Optional<String> commanderResponse,
-      final Optional<String> sergeantResponse,
-      final Optional<String> soldierResponse
-  ) {
+      final String commanderResponse,
+      final String sergeantResponse,
+      final String soldierResponse) {
     this.visitor = visitor;
     this.commanderResponse = commanderResponse;
     this.sergeantResponse = sergeantResponse;
@@ -99,8 +88,8 @@ public abstract class VisitorTest<V extends UnitVisitor> {
   @Test
   void testVisitCommander() {
     this.visitor.visit(new Commander());
-    if (this.commanderResponse.isPresent()) {
-      assertEquals(this.commanderResponse.get(), appender.getLastMessage());
+    if (this.commanderResponse != null) {
+      assertEquals(this.commanderResponse, appender.getLastMessage());
       assertEquals(1, appender.getLogSize());
     }
   }
@@ -108,8 +97,8 @@ public abstract class VisitorTest<V extends UnitVisitor> {
   @Test
   void testVisitSergeant() {
     this.visitor.visit(new Sergeant());
-    if (this.sergeantResponse.isPresent()) {
-      assertEquals(this.sergeantResponse.get(), appender.getLastMessage());
+    if (this.sergeantResponse != null) {
+      assertEquals(this.sergeantResponse, appender.getLastMessage());
       assertEquals(1, appender.getLogSize());
     }
   }
@@ -117,13 +106,13 @@ public abstract class VisitorTest<V extends UnitVisitor> {
   @Test
   void testVisitSoldier() {
     this.visitor.visit(new Soldier());
-    if (this.soldierResponse.isPresent()) {
-      assertEquals(this.soldierResponse.get(), appender.getLastMessage());
+    if (this.soldierResponse != null) {
+      assertEquals(this.soldierResponse, appender.getLastMessage());
       assertEquals(1, appender.getLogSize());
     }
   }
 
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender() {

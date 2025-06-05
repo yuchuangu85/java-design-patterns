@@ -24,16 +24,17 @@
  */
 package com.iluwatar.value.object;
 
+import lombok.ToString;
 import lombok.Value;
 
 /**
  * HeroStat is a value object.
  *
  * @see <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html">
- *     http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html
- *     </a>
+ *     http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html </a>
  */
 @Value(staticConstructor = "valueOf")
+@ToString
 class HeroStat {
 
   int strength;

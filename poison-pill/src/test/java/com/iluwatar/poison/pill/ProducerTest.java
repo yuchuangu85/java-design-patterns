@@ -35,11 +35,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
-/**
- * Date: 12/27/15 - 10:32 PM
- *
- * @author Jeroen Meulemeester
- */
+/** ProducerTest */
 class ProducerTest {
 
   @Test
@@ -77,11 +73,11 @@ class ProducerTest {
     } catch (IllegalStateException e) {
       assertNotNull(e);
       assertNotNull(e.getMessage());
-      assertEquals("Producer Hello! was stopped and fail to deliver requested message [producer].",
+      assertEquals(
+          "Producer Hello! was stopped and fail to deliver requested message [producer].",
           e.getMessage());
     }
 
     verifyNoMoreInteractions(publishPoint);
   }
-
 }

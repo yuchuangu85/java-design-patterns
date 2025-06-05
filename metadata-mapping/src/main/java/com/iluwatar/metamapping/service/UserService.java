@@ -32,15 +32,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
-/**
- * Service layer for user.
- */
+/** Service layer for user. */
 @Slf4j
 public class UserService {
   private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 
   /**
    * List all users.
+   *
    * @return list of users
    */
   public List<User> listUser() {
@@ -49,8 +48,8 @@ public class UserService {
     try (var session = factory.openSession()) {
       var tx = session.beginTransaction();
       List<User> userIter = session.createQuery("FROM User").list();
-      for (var iterator = userIter.iterator(); iterator.hasNext();) {
-        users.add(iterator.next());
+      for (User user : userIter) {
+        users.add(user);
       }
       tx.commit();
     } catch (HibernateException e) {
@@ -61,6 +60,7 @@ public class UserService {
 
   /**
    * Add a user.
+   *
    * @param user user entity
    * @return user id
    */
@@ -80,6 +80,7 @@ public class UserService {
 
   /**
    * Update user.
+   *
    * @param id user id
    * @param user new user entity
    */
@@ -97,6 +98,7 @@ public class UserService {
 
   /**
    * Delete user.
+   *
    * @param id user id
    */
   public void deleteUser(Integer id) {
@@ -113,6 +115,7 @@ public class UserService {
 
   /**
    * Get user.
+   *
    * @param id user id
    * @return deleted user
    */
@@ -129,9 +132,7 @@ public class UserService {
     return user;
   }
 
-  /**
-   * Close hibernate.
-   */
+  /** Close hibernate. */
   public void close() {
     HibernateUtil.shutdown();
   }

@@ -26,7 +26,6 @@ package com.iluwatar.leaderelection.bully;
 
 import com.iluwatar.leaderelection.Instance;
 import com.iluwatar.leaderelection.Message;
-import com.iluwatar.leaderelection.MessageManager;
 import com.iluwatar.leaderelection.MessageType;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,9 +37,7 @@ import java.util.Map;
  */
 public class BullyApp {
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) {
 
     Map<Integer, Instance> instanceMap = new HashMap<>();

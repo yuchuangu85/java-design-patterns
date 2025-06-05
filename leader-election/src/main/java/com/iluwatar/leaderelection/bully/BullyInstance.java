@@ -42,9 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BullyInstance extends AbstractInstance {
   private static final String INSTANCE = "Instance ";
 
-  /**
-   * Constructor of BullyInstance.
-   */
+  /** Constructor of BullyInstance. */
   public BullyInstance(MessageManager messageManager, int localId, int leaderId) {
     super(messageManager, localId, leaderId);
   }
@@ -95,12 +93,10 @@ public class BullyInstance extends AbstractInstance {
     }
   }
 
-  /**
-   * Process leader message. Update local leader information.
-   */
+  /** Process leader message. Update local leader information. */
   @Override
   protected void handleLeaderMessage(Message message) {
-    leaderId = Integer.valueOf(message.getContent());
+    leaderId = Integer.parseInt(message.getContent());
     LOGGER.info(INSTANCE + localId + " - Leader update done.");
   }
 

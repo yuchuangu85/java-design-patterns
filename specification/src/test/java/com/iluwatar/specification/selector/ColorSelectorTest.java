@@ -33,16 +33,10 @@ import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Color;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/29/15 - 7:35 PM
- *
- * @author Jeroen Meulemeester
- */
+/** ColorSelectorTest */
 class ColorSelectorTest {
 
-  /**
-   * Verify if the color selector gives the correct results
-   */
+  /** Verify if the color selector gives the correct results */
   @Test
   void testColor() {
     final var greenCreature = mock(Creature.class);
@@ -54,7 +48,5 @@ class ColorSelectorTest {
     final var greenSelector = new ColorSelector(Color.GREEN);
     assertTrue(greenSelector.test(greenCreature));
     assertFalse(greenSelector.test(redCreature));
-
   }
-
 }

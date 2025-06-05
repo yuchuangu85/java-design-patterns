@@ -30,16 +30,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/30/15 - 18:35 PM
- *
- * @author Jeroen Meulemeester
- */
+/** RainbowFishV2Test */
 class RainbowFishV2Test {
 
-  /**
-   * Verify if the getters of a {@link RainbowFish} return the expected values
-   */
+  /** Verify if the getters of a {@link RainbowFish} return the expected values */
   @Test
   void testValues() {
     final var fish = new RainbowFishV2("name", 1, 2, 3, false, true, false);
@@ -51,5 +45,4 @@ class RainbowFishV2Test {
     assertTrue(fish.isHungry());
     assertFalse(fish.isAngry());
   }
-
 }

@@ -40,9 +40,7 @@ public class LoggingHandler implements ChannelHandler {
 
   private static final byte[] ACK = "Data logged successfully".getBytes();
 
-  /**
-   * Decodes the received data and logs it on standard console.
-   */
+  /** Decodes the received data and logs it on standard console. */
   @Override
   public void handleChannelRead(AbstractNioChannel channel, Object readObject, SelectionKey key) {
     /*
@@ -52,8 +50,7 @@ public class LoggingHandler implements ChannelHandler {
     if (readObject instanceof ByteBuffer) {
       doLogging((ByteBuffer) readObject);
       sendReply(channel, key);
-    } else if (readObject instanceof DatagramPacket) {
-      var datagram = (DatagramPacket) readObject;
+    } else if (readObject instanceof DatagramPacket datagram) {
       doLogging(datagram.getData());
       sendReply(channel, datagram, key);
     } else {
@@ -62,10 +59,7 @@ public class LoggingHandler implements ChannelHandler {
   }
 
   private static void sendReply(
-      AbstractNioChannel channel,
-      DatagramPacket incomingPacket,
-      SelectionKey key
-  ) {
+      AbstractNioChannel channel, DatagramPacket incomingPacket, SelectionKey key) {
     /*
      * Create a reply acknowledgement datagram packet setting the receiver to the sender of incoming
      * message.

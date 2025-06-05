@@ -39,11 +39,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/12/15 - 11:15 PM
- *
- * @author Jeroen Meulemeester
- */
+/** AsynchronousServiceTest */
 class AsynchronousServiceTest {
   private AsynchronousService service;
   private AsyncTask<Object> task;
@@ -100,5 +96,4 @@ class AsynchronousServiceTest {
 
     verifyNoMoreInteractions(task);
   }
-
 }

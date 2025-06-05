@@ -27,16 +27,10 @@ package com.iluwatar.visitor;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
-/**
- * Date: 12/30/15 - 19:45 PM.
- *
- * @author Jeroen Meulemeester
- */
+/** CommanderTest */
 class CommanderTest extends UnitTest<Commander> {
 
-  /**
-   * Create a new test instance for the given {@link Commander}.
-   */
+  /** Create a new test instance for the given {@link Commander}. */
   public CommanderTest() {
     super(Commander::new);
   }
@@ -45,5 +39,4 @@ class CommanderTest extends UnitTest<Commander> {
   void verifyVisit(Commander unit, UnitVisitor mockedVisitor) {
     verify(mockedVisitor).visit(eq(unit));
   }
-
 }

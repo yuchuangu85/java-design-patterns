@@ -34,11 +34,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Receiver of Data-Bus events.
- *
- * @author Paul Campbell (pcampbell@kemitix.net)
- */
+/** Receiver of Data-Bus events. */
 @Getter
 @Slf4j
 @RequiredArgsConstructor
@@ -70,5 +66,4 @@ public class StatusMember implements Member {
     LOGGER.info("Receiver {} sending goodbye message", id);
     data.getDataBus().publish(MessageData.of(String.format("Goodbye cruel world from #%d!", id)));
   }
-
 }

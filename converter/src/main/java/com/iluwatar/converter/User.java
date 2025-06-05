@@ -24,21 +24,5 @@
  */
 package com.iluwatar.converter;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-
-/**
- * User class.
- */
-@ToString
-@EqualsAndHashCode
-@Getter
-@RequiredArgsConstructor
-public class User {
-  private final String firstName;
-  private final String lastName;
-  private final boolean active;
-  private final String userId;
-}
+/** User record. */
+public record User(String firstName, String lastName, boolean active, String userId) {}

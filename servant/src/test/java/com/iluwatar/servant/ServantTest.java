@@ -33,11 +33,7 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/28/15 - 10:02 PM
- *
- * @author Jeroen Meulemeester
- */
+/** ServantTest */
 class ServantTest {
 
   @Test
@@ -81,7 +77,5 @@ class ServantTest {
 
     assertTrue(new Servant("test").checkIfYouWillBeHanged(goodCompany));
     assertTrue(new Servant("test").checkIfYouWillBeHanged(badCompany));
-
   }
-
 }

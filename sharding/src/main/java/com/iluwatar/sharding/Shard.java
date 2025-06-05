@@ -26,13 +26,12 @@ package com.iluwatar.sharding;
 
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Getter;
 
-/**
- * The Shard class stored data in a HashMap.
- */
+/** The Shard class stored data in a HashMap. */
 public class Shard {
 
-  private final int id;
+  @Getter private final int id;
 
   private final Map<Integer, Data> dataStore;
 
@@ -52,9 +51,4 @@ public class Shard {
   public Data getDataById(final int id) {
     return dataStore.get(id);
   }
-
-  public int getId() {
-    return id;
-  }
-
 }

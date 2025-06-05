@@ -25,23 +25,20 @@
 package com.iluwatar.singleton;
 
 /**
- * <p>Double check locking.</p>
+ * Double check locking.
  *
- * <p>http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html</p>
+ * <p>http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html
  *
- * <p>Broken under Java 1.4.</p>
- *
- * @author mortezaadi@gmail.com
+ * <p>Broken under Java 1.4.
  */
 public final class ThreadSafeDoubleCheckLocking {
   /**
-   * Singleton instance of the class, declared as volatile to ensure atomic access by multiple threads.
+   * Singleton instance of the class, declared as volatile to ensure atomic access by multiple
+   * threads.
    */
   private static volatile ThreadSafeDoubleCheckLocking instance;
 
-  /**
-   * private constructor to prevent client from instantiating.
-   */
+  /** private constructor to prevent client from instantiating. */
   private ThreadSafeDoubleCheckLocking() {
     // to prevent instantiating by Reflection call
     if (instance != null) {
@@ -62,7 +59,7 @@ public final class ThreadSafeDoubleCheckLocking {
     // Check if singleton instance is initialized.
     // If it is initialized then we can return the instance.
     if (result == null) {
-      // It is not initialized but we cannot be sure because some other thread might have
+      // It is not initialized, but we cannot be sure because some other thread might have
       // initialized it in the meanwhile.
       // So to make sure we need to lock on an object to get mutual exclusion.
       synchronized (ThreadSafeDoubleCheckLocking.class) {
@@ -72,7 +69,7 @@ public final class ThreadSafeDoubleCheckLocking {
         // just like the previous null check.
         result = instance;
         if (result == null) {
-          // The instance is still not initialized so we can safely
+          // The instance is still not initialized, so we can safely
           // (no other thread can enter this zone)
           // create an instance and make it our singleton instance.
           result = new ThreadSafeDoubleCheckLocking();

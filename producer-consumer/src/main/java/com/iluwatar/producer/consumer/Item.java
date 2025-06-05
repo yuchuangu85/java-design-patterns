@@ -24,8 +24,5 @@
  */
 package com.iluwatar.producer.consumer;
 
-/**
- * Class take part of an {@link Producer}-{@link Consumer} exchange.
- */
-public record Item(String producer, int id) {
-}
+/** Class take part of an {@link Producer}-{@link Consumer} exchange. */
+public record Item(String producer, int id) {}

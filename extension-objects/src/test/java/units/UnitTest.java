@@ -29,13 +29,11 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Created by Srdjan on 03-May-17.
- */
+/** Created by Srdjan on 03-May-17. */
 class UnitTest {
 
   @Test
-  void testConstGetSet() throws Exception {
+  void testConstGetSet() {
     final var name = "testName";
     final var unit = new Unit(name);
     assertEquals(name, unit.getName());
@@ -44,11 +42,9 @@ class UnitTest {
     unit.setName(newName);
     assertEquals(newName, unit.getName());
 
-
     assertNull(unit.getUnitExtension(""));
     assertNull(unit.getUnitExtension("SoldierExtension"));
     assertNull(unit.getUnitExtension("SergeantExtension"));
     assertNull(unit.getUnitExtension("CommanderExtension"));
   }
-
 }

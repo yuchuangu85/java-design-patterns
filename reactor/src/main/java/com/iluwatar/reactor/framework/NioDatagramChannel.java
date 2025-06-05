@@ -31,11 +31,11 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * A wrapper over {@link DatagramChannel} which can read and write data on a DatagramChannel.
- */
+/** A wrapper over {@link DatagramChannel} which can read and write data on a DatagramChannel. */
 @Slf4j
 public class NioDatagramChannel extends AbstractNioChannel {
 
@@ -48,7 +48,7 @@ public class NioDatagramChannel extends AbstractNioChannel {
    * <p>Note the constructor does not bind the socket, {@link #bind()} method should be called for
    * binding the socket.
    *
-   * @param port    the port to be bound to listen for incoming datagram requests.
+   * @param port the port to be bound to listen for incoming datagram requests.
    * @param handler the handler to be used for handling incoming requests on this channel.
    * @throws IOException if any I/O error occurs.
    */
@@ -128,13 +128,12 @@ public class NioDatagramChannel extends AbstractNioChannel {
     super.write(data, key);
   }
 
-  /**
-   * Container of data used for {@link NioDatagramChannel} to communicate with remote peer.
-   */
+  /** Container of data used for {@link NioDatagramChannel} to communicate with remote peer. */
+  @Getter
   public static class DatagramPacket {
-    private SocketAddress sender;
     private final ByteBuffer data;
-    private SocketAddress receiver;
+    @Setter private SocketAddress sender;
+    @Setter private SocketAddress receiver;
 
     /**
      * Creates a container with underlying data.
@@ -143,51 +142,6 @@ public class NioDatagramChannel extends AbstractNioChannel {
      */
     public DatagramPacket(ByteBuffer data) {
       this.data = data;
-    }
-
-    /**
-     * Get sender address.
-     *
-     * @return the sender address.
-     */
-    public SocketAddress getSender() {
-      return sender;
-    }
-
-    /**
-     * Sets the sender address of this packet.
-     *
-     * @param sender the sender address.
-     */
-    public void setSender(SocketAddress sender) {
-      this.sender = sender;
-    }
-
-    /**
-     * Get receiver address.
-     *
-     * @return the receiver address.
-     */
-    public SocketAddress getReceiver() {
-      return receiver;
-    }
-
-    /**
-     * Sets the intended receiver address. This must be set when writing to the channel.
-     *
-     * @param receiver the receiver address.
-     */
-    public void setReceiver(SocketAddress receiver) {
-      this.receiver = receiver;
-    }
-
-    /**
-     * Get data.
-     *
-     * @return the underlying message that will be written on channel.
-     */
-    public ByteBuffer getData() {
-      return data;
     }
   }
 }

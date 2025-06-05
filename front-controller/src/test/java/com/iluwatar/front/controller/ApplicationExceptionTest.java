@@ -28,11 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/13/15 - 1:35 PM
- *
- * @author Jeroen Meulemeester
- */
+/** ApplicationExceptionTest */
 class ApplicationExceptionTest {
 
   @Test
@@ -40,5 +36,4 @@ class ApplicationExceptionTest {
     final var cause = new Exception();
     assertSame(cause, new ApplicationException(cause).getCause());
   }
-
 }

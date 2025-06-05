@@ -31,23 +31,21 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * GameLoop unit test class.
- */
+/** GameLoop unit test class. */
 class GameLoopTest {
 
   private GameLoop gameLoop;
 
-  /**
-   * Create mock implementation of GameLoop.
-   */
+  /** Create mock implementation of GameLoop. */
   @BeforeEach
   void setup() {
-    gameLoop = new GameLoop() {
-      @Override
-      protected void processGameLoop() {
-      }
-    };
+    gameLoop =
+        new GameLoop() {
+          @Override
+          protected void processGameLoop() {
+            throw new UnsupportedOperationException("Not supported yet.");
+          }
+        };
   }
 
   @AfterEach

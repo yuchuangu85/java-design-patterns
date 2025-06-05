@@ -31,11 +31,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/12/15 - 10:54 PM
- *
- * @author Jeroen Meulemeester
- */
+/** AlchemistShopTest */
 class AlchemistShopTest {
 
   @Test

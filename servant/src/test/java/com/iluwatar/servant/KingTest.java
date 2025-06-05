@@ -29,11 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Date: 12/28/15 - 9:40 PM
- *
- * @author Jeroen Meulemeester
- */
+/** KingTest */
 class KingTest {
 
   @Test
@@ -103,5 +99,4 @@ class KingTest {
     king.changeMood();
     assertFalse(king.getMood());
   }
-
 }
